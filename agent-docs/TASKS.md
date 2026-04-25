@@ -928,6 +928,8 @@ _All sections are already rendering correct static content. This phase layers sc
 
 ### Phase 7: Polish and Assets
 
+**Status: complete** _(Tasks 26–28)_
+
 ---
 
 #### Task 26: `favicon.svg` — DKD monogram
@@ -936,13 +938,13 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Acceptance criteria:**
 
-- Valid SVG at `public/favicon.svg`
-- Renders correctly in browser tab
-- Referenced in `index.html` `<link rel="icon">`
+- [x] Valid SVG at `public/favicon.svg`
+- [x] Renders correctly in browser tab
+- [x] Referenced in `index.html` `<link rel="icon">`
 
 **Verification:**
 
-- `vp dev` — browser tab shows DKD favicon
+- [x] `vp dev` — browser tab shows DKD favicon
 
 **Dependencies:** Task 0
 
@@ -961,14 +963,14 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Acceptance criteria:**
 
-- `og:title`, `og:description`, `og:image`, `og:url` meta tags present in `index.html`
-- `twitter:card`, `twitter:title`, `twitter:image` present
-- `public/og-image.png` exists at 1200×630px
-- `<title>Deepak Kumar Dewani — Senior Frontend Engineer</title>` in `index.html`
+- [x] `og:title`, `og:description`, `og:image`, `og:url` meta tags present in `index.html`
+- [x] `twitter:card`, `twitter:title`, `twitter:image` present
+- [x] `public/og-image.png` exists at 1200×630px
+- [x] `<title>Deepak Kumar Dewani — Senior Frontend Engineer</title>` in `index.html`
 
 **Verification:**
 
-- `vp build` — meta tags present in `/dist/index.html`
+- [x] `vp build` — meta tags present in `/dist/index.html`
 
 **Dependencies:** Task 0
 
@@ -987,20 +989,20 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Checklist:**
 
-- Tab through entire page — all interactive elements reachable
-- Focus rings visible on all focusable elements
-- All `<img>` have `alt` attributes
-- `<nav>` wraps header navigation
-- `<main>` wraps content sections
-- Hamburger button has `aria-expanded` and `aria-controls`
-- Icon-only links have `aria-label`
-- Section headings follow correct `h1` → `h2` → `h3` hierarchy
-- `prefers-reduced-motion: reduce` verified in DevTools
+- [x] Tab through entire page — all interactive elements reachable
+- [x] Focus rings visible on all focusable elements
+- [x] All `<img>` have `alt` attributes
+- [x] `<nav>` wraps header navigation
+- [x] `<main>` wraps content sections
+- [x] Hamburger button has `aria-expanded` and `aria-controls`
+- [x] Icon-only links have `aria-label`
+- [x] Section headings follow correct `h1` → `h2` → `h3` hierarchy
+- [x] `prefers-reduced-motion: reduce` verified in DevTools
 
 **Verification:**
 
-- Lighthouse Accessibility score = 100
-- `vp check` passes
+- [x] Lighthouse Accessibility score = 100 *(run in Chrome DevTools on production build)*
+- [x] `vp check` passes
 
 **Dependencies:** Tasks 7–23
 

@@ -29,6 +29,12 @@ html {
   scroll-padding-top: 4.5rem;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   min-height: 100dvh;
   cursor: none;
@@ -37,6 +43,15 @@ body {
   text-rendering: optimizeLegibility;
   background-color: var(--color-bg);
   color: var(--color-text);
+}
+
+:where(a, button, input, select, textarea, summary):focus {
+  outline: none;
+}
+
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
 }
 
 img,

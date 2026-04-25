@@ -13,7 +13,7 @@ const backgroundText = computed(() => award.title.toUpperCase());
 </script>
 
 <template>
-  <section id="award" ref="sectionRef" class="award" aria-label="Awards and recognition">
+  <section id="award" ref="sectionRef" class="award" aria-labelledby="award-title">
     <p class="award__bg-text" aria-hidden="true">
       {{ backgroundText }}
     </p>
@@ -21,7 +21,7 @@ const backgroundText = computed(() => award.title.toUpperCase());
       <div class="award__label">
         <SectionLabel index="03" label="AWARD" />
       </div>
-      <h2 class="award__title">
+      <h2 id="award-title" class="award__title">
         {{ award.title }}
       </h2>
       <p class="award__meta">

@@ -8,6 +8,7 @@ const mailto = `mailto:${email}`;
 
 <template>
   <section id="contact" class="contact" aria-labelledby="contact-heading">
+    <h2 id="contact-heading" class="sr-only">Contact</h2>
     <div class="contact__inner">
       <div class="contact__label">
         <SectionLabel index="06" label="CONTACT" />
@@ -15,7 +16,6 @@ const mailto = `mailto:${email}`;
       <a :href="mailto" class="contact__headline">
         {{ contactCta }}
       </a>
-      <h2 id="contact-heading" class="sr-only">Contact</h2>
       <ul class="contact__links">
         <li>
           <a :href="links.linkedin" class="contact__link" rel="noopener noreferrer" target="_blank">

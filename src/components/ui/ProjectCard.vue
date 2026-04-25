@@ -21,9 +21,9 @@ const counter = `${String(props.index + 1).padStart(2, "0")} / ${String(props.to
       <p class="project-card__counter">
         {{ counter }}
       </p>
-      <h2 class="project-card__title">
+      <h3 class="project-card__title">
         {{ project.title }}
-      </h2>
+      </h3>
       <p class="project-card__tagline">
         {{ project.tagline }}
       </p>
@@ -159,6 +159,12 @@ const counter = `${String(props.index + 1).padStart(2, "0")} / ${String(props.to
 .project-card__link:hover {
   text-decoration: underline;
   text-underline-offset: 0.2em;
+}
+
+.project-card__link:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 @media (min-width: 768px) {
