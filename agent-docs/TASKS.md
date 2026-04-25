@@ -71,21 +71,21 @@ resolve: {
 
 **Acceptance criteria:**
 
-- [x] `vp dev` starts without errors
-- [x] `vp build` completes without errors
-- [x] `vp check` passes (lint + format + type-check)
-- [x] `import gsap from 'gsap'` resolves without error
-- [x] `import { useMouseInElement } from '@vueuse/core'` resolves without error
-- [x] `import { z } from 'zod'` resolves without error
-- [x] All three `@fontsource` packages installed in `node_modules`
-- [x] TypeScript strict mode enabled in `tsconfig.json` _(via `tsconfig.app.json`)_
-- [x] `@/` alias resolves to `src/`
+- `vp dev` starts without errors
+- `vp build` completes without errors
+- `vp check` passes (lint + format + type-check)
+- `import gsap from 'gsap'` resolves without error
+- `import { useMouseInElement } from '@vueuse/core'` resolves without error
+- `import { z } from 'zod'` resolves without error
+- All three `@fontsource` packages installed in `node_modules`
+- TypeScript strict mode enabled in `tsconfig.json` _(via `tsconfig.app.json`)_
+- `@/` alias resolves to `src/`
 
 **Verification:**
 
-- [x] `vp dev` — browser opens, blank page with no console errors
-- [x] `vp build` — `/dist` directory created, no type errors
-- [x] `vp check` — exits 0
+- `vp dev` — browser opens, blank page with no console errors
+- `vp build` — `/dist` directory created, no type errors
+- `vp check` — exits 0
 
 **Dependencies:** None
 
@@ -111,19 +111,19 @@ resolve: {
 
 **Acceptance criteria:**
 
-- [x] All color tokens defined as CSS custom properties matching SPEC exactly (8 tokens: `--color-bg`, `--color-surface`, `--color-border`, `--color-text`, `--color-muted`, `--color-accent`, `--color-accent-dim`, `--color-white`)
-- [x] Bebas Neue, DM Mono, and Instrument Sans load from `@fontsource` with `font-display: swap`
-- [x] CSS reset applied (box-sizing, margin/padding reset, `cursor: none` on `body`)
-- [x] Base `font-family`, `background-color`, and `color` set on `:root` / `body`
-- [x] `sr-only` utility class defined in `utilities.css`
-- [x] `scroll-behavior: smooth` applied globally
-- [x] No hex values hardcoded outside `global.css`
+- All color tokens defined as CSS custom properties matching SPEC exactly (8 tokens: `--color-bg`, `--color-surface`, `--color-border`, `--color-text`, `--color-muted`, `--color-accent`, `--color-accent-dim`, `--color-white`)
+- Bebas Neue, DM Mono, and Instrument Sans load from `@fontsource` with `font-display: swap`
+- CSS reset applied (box-sizing, margin/padding reset, `cursor: none` on `body`)
+- Base `font-family`, `background-color`, and `color` set on `:root` / `body`
+- `sr-only` utility class defined in `utilities.css`
+- `scroll-behavior: smooth` applied globally
+- No hex values hardcoded outside `global.css`
 
 **Verification:**
 
-- [x] `vp dev` — page background is `#080808`, no white flash
-- [x] Browser DevTools confirms fonts loading from local (not Google Fonts CDN)
-- [x] `vp check` passes
+- `vp dev` — page background is `#080808`, no white flash
+- Browser DevTools confirms fonts loading from local (not Google Fonts CDN)
+- `vp check` passes
 
 **Dependencies:** Task 0
 
@@ -144,14 +144,14 @@ resolve: {
 
 **Acceptance criteria:**
 
-- [x] `gsap` and `ScrollTrigger` exported from `src/utils/gsap.ts`
-- [x] `gsap.registerPlugin(ScrollTrigger)` called once at module level
-- [x] No other file in the project imports from `'gsap'` directly — all import from `'@/utils/gsap'` _(test smoke uses a relative import to the same module for type-check)_
+- `gsap` and `ScrollTrigger` exported from `src/utils/gsap.ts`
+- `gsap.registerPlugin(ScrollTrigger)` called once at module level
+- No other file in the project imports from `'gsap'` directly — all import from `'@/utils/gsap'` _(test smoke uses a relative import to the same module for type-check)_
 
 **Verification:**
 
-- [x] `vp build` — no duplicate GSAP registration warnings
-- [x] `vp check` passes
+- `vp build` — no duplicate GSAP registration warnings
+- `vp check` passes
 
 **Dependencies:** Task 0
 
@@ -171,14 +171,14 @@ resolve: {
 
 **Acceptance criteria:**
 
-- [x] All interfaces defined with correct field names and types matching SPEC data model
-- [x] No use of `any` — all fields explicitly typed
-- [x] Optional fields marked with `?`
-- [x] File exports all interfaces as named exports
+- All interfaces defined with correct field names and types matching SPEC data model
+- No use of `any` — all fields explicitly typed
+- Optional fields marked with `?`
+- File exports all interfaces as named exports
 
 **Verification:**
 
-- [x] `vp check` — no type errors
+- `vp check` — no type errors
 
 **Dependencies:** Task 0
 
@@ -206,18 +206,18 @@ resolve: {
 
 **Acceptance criteria:**
 
-- [x] `PortfolioConfigSchema.parse(...)` succeeds without throwing
-- [x] All 5 projects populated with `id`, `title`, `tagline`, `description`, `stack`, `url`, `image`, `accentColor`, `year`
-- [x] All 4 AccionLabs roles populated with `title`, `period`, `location`, `highlights`
-- [x] `export type PortfolioConfig = z.infer<typeof PortfolioConfigSchema>` present
-- [x] Removing a required field causes Zod to throw with the field path in the error message
-- [x] No hex values used in components — only `accentColor` lives in config
+- `PortfolioConfigSchema.parse(...)` succeeds without throwing
+- All 5 projects populated with `id`, `title`, `tagline`, `description`, `stack`, `url`, `image`, `accentColor`, `year`
+- All 4 AccionLabs roles populated with `title`, `period`, `location`, `highlights`
+- `export type PortfolioConfig = z.infer<typeof PortfolioConfigSchema>` present
+- Removing a required field causes Zod to throw with the field path in the error message
+- No hex values used in components — only `accentColor` lives in config
 
 **Verification:**
 
-- [x] `vp build` — no type errors
-- [x] Manually delete a required field and confirm Zod throws descriptively
-- [x] `vp check` passes
+- `vp build` — no type errors
+- Manually delete a required field and confirm Zod throws descriptively
+- `vp check` passes
 
 **Dependencies:** Tasks 2 (types)
 
@@ -236,15 +236,15 @@ resolve: {
 
 **Acceptance criteria:**
 
-- [x] All three files exist and export named functions
-- [x] Each animation function in `useScrollAnimations.ts` calls `ScrollTrigger.getAll().forEach(t => t.kill())` in `onUnmounted`
-- [x] No GSAP animation logic yet — stubs only
-- [x] `useTheme.ts` exports an empty `useTheme()` function with a TODO comment
-- [x] All composables prefixed `use*`
+- All three files exist and export named functions
+- Each animation function in `useScrollAnimations.ts` calls `ScrollTrigger.getAll().forEach(t => t.kill())` in `onUnmounted`
+- No GSAP animation logic yet — stubs only
+- `useTheme.ts` exports an empty `useTheme()` function with a TODO comment
+- All composables prefixed `use`\*
 
 **Verification:**
 
-- [x] `vp check` passes — no TypeScript errors on the stubs
+- `vp check` passes — no TypeScript errors on the stubs
 
 **Dependencies:** Tasks 2, 3
 
@@ -260,10 +260,10 @@ resolve: {
 
 ### Checkpoint: Phase 1
 
-- [x] `vp build` — zero errors, zero type errors
-- [x] `vp check` — exits 0
-- [x] `vp dev` — blank dark page with correct background color, fonts loaded
-- [x] `portfolio.config.ts` parse succeeds; all 5 projects, 4 roles, 6 skill groups present
+- `vp build` — zero errors, zero type errors
+- `vp check` — exits 0
+- `vp dev` — blank dark page with correct background color, fonts loaded
+- `portfolio.config.ts` parse succeeds; all 5 projects, 4 roles, 6 skill groups present
 
 ---
 
@@ -281,16 +281,16 @@ resolve: {
 
 **Acceptance criteria:**
 
-- [x] All 9 layout/section components imported and rendered in `App.vue`
-- [x] Each section stub renders a placeholder `<section>` with correct `id` attribute
-- [x] `<CustomCursor />` mounted as a global overlay in `App.vue`
-- [x] Page scrolls end-to-end without layout errors
-- [x] No section renders content yet — stubs only
+- All 9 layout/section components imported and rendered in `App.vue`
+- Each section stub renders a placeholder `<section>` with correct `id` attribute
+- `<CustomCursor />` mounted as a global overlay in `App.vue`
+- Page scrolls end-to-end without layout errors
+- No section renders content yet — stubs only
 
 **Verification:**
 
-- [x] `vp dev` — page renders, all section `id` anchors present in DOM
-- [x] `vp check` passes
+- `vp dev` — page renders, all section `id` anchors present in DOM
+- `vp check` passes
 
 **Dependencies:** Tasks 1–5
 
@@ -318,24 +318,24 @@ resolve: {
 
 **Acceptance criteria:**
 
-- [x] `position: fixed`, full width, `z-index: 100`
-- [x] Background: transparent on load → `--color-bg` at 85% opacity + `backdrop-filter: blur` on scroll
-- [x] GSAP: translates `-100%` on scroll down, `0` on scroll up
-- [x] Left: `DKD` monogram in Bebas Neue, links to `#hero`
-- [x] Right: `Work · Experience · Skills · Contact` in DM Mono small caps; anchors `#work`, `#experience`, `#skills`, `#contact`
-- [x] Active nav link highlighted via `useIntersectionObserver` on each section
-- [x] Mobile (<768px): hamburger button visible; nav links hidden
-- [x] Hamburger opens full-width drawer; closes on link click or outside tap
-- [x] Hamburger has `aria-expanded` and `aria-controls`
-- [x] Fully keyboard navigable (tab order correct, focus rings visible)
-- [x] GSAP ScrollTrigger killed in `onUnmounted`
+- `position: fixed`, full width, `z-index: 100`
+- Background: transparent on load → `--color-bg` at 85% opacity + `backdrop-filter: blur` on scroll
+- GSAP: translates `-100%` on scroll down, `0` on scroll up
+- Left: `DKD` monogram in Bebas Neue, links to `#hero`
+- Right: `Work · Experience · Skills · Contact` in DM Mono small caps; anchors `#work`, `#experience`, `#skills`, `#contact`
+- Active nav link highlighted via `useIntersectionObserver` on each section
+- Mobile (<768px): hamburger button visible; nav links hidden
+- Hamburger opens full-width drawer; closes on link click or outside tap
+- Hamburger has `aria-expanded` and `aria-controls`
+- Fully keyboard navigable (tab order correct, focus rings visible)
+- GSAP ScrollTrigger killed in `onUnmounted`
 
 **Verification:**
 
-- [x] `vp dev` — scroll down → header hides; scroll up → header appears
-- [x] Resize to <768px — hamburger visible; click → drawer opens/closes
-- [x] Tab through nav — all links reachable via keyboard
-- [x] `vp check` passes
+- `vp dev` — scroll down → header hides; scroll up → header appears
+- Resize to <768px — hamburger visible; click → drawer opens/closes
+- Tab through nav — all links reachable via keyboard
+- `vp check` passes
 
 **Dependencies:** Task 6
 
@@ -353,17 +353,17 @@ resolve: {
 
 **Acceptance criteria:**
 
-- [x] `© 2026 Deepak Kumar Dewani` in DM Mono, `--color-muted`, left-aligned
-- [x] LinkedIn, GitHub, email icon links right-aligned
-- [x] Each icon link has `aria-label`
-- [x] All external links include `rel="noopener noreferrer" target="_blank"`
-- [x] No hardcoded URLs — all sourced from `portfolio.config.ts`
+- `© 2026 Deepak Kumar Dewani` in DM Mono, `--color-muted`, left-aligned
+- LinkedIn, GitHub, email icon links right-aligned
+- Each icon link has `aria-label`
+- All external links include `rel="noopener noreferrer" target="_blank"`
+- No hardcoded URLs — all sourced from `portfolio.config.ts`
 
 **Verification:**
 
-- [x] `vp dev` — footer renders at bottom of page
-- [x] Inspect links — `rel` attribute present on all external links
-- [x] `vp check` passes
+- `vp dev` — footer renders at bottom of page
+- Inspect links — `rel` attribute present on all external links
+- `vp check` passes
 
 **Dependencies:** Tasks 4, 6
 
@@ -381,13 +381,13 @@ resolve: {
 
 **Acceptance criteria:**
 
-- [x] Props typed with `defineProps<{ index: string; label: string }>()`
-- [x] Renders `{index} / {label}` in DM Mono, `--color-muted`
-- [x] No hardcoded content
+- Props typed with `defineProps<{ index: string; label: string }>()`
+- Renders `{index} / {label}` in DM Mono, `--color-muted`
+- No hardcoded content
 
 **Verification:**
 
-- [x] `vp check` passes
+- `vp check` passes
 
 **Dependencies:** Task 6
 
@@ -411,19 +411,19 @@ _All sections in this phase render real content from `portfolio.config.ts` with 
 
 **Acceptance criteria:**
 
-- [x] `height: 100dvh`, full viewport
-- [x] `DEEPAK KUMAR DEWANI` rendered in Bebas Neue, large — intentionally clips viewport edges
-- [x] Each character wrapped in `<span class="char">` (manual split — not GSAP SplitText)
-- [x] Tagline `8 years. One company. Four promotions. 14 million users.` in DM Mono, below name
-- [x] Radial glow: `radial-gradient` from `--color-accent-dim` to transparent behind text
-- [x] Scroll cue: thin vertical line at bottom center with CSS pulse keyframe animation
-- [x] No photo, no image
-- [x] All content sourced from `portfolio.config.ts` (`name`, `tagline`)
+- `height: 100dvh`, full viewport
+- `DEEPAK KUMAR DEWANI` rendered in Bebas Neue, large — intentionally clips viewport edges
+- Each character wrapped in `<span class="char">` (manual split — not GSAP SplitText)
+- Tagline `8 years. One company. Four promotions. 14 million users.` in DM Mono, below name
+- Radial glow: `radial-gradient` from `--color-accent-dim` to transparent behind text
+- Scroll cue: thin vertical line at bottom center with CSS pulse keyframe animation
+- No photo, no image
+- All content sourced from `portfolio.config.ts` (`name`, `tagline`)
 
 **Verification:**
 
-- [x] `vp dev` — name fills viewport, tagline visible, scroll cue pulses
-- [x] `vp check` passes
+- `vp dev` — name fills viewport, tagline visible, scroll cue pulses
+- `vp check` passes
 
 **Dependencies:** Tasks 1, 4, 6
 
@@ -442,16 +442,16 @@ _All sections in this phase render real content from `portfolio.config.ts` with 
 
 **Acceptance criteria:**
 
-- [x] Props: `defineProps<{ project: Project; index: number; total: number }>()`
-- [x] Renders: title (Bebas Neue), tagline (DM Mono), stack tags, screenshot (`<img loading="lazy">`), counter `01 / 05`
-- [x] Live link: `target="_blank"` + `rel="noopener noreferrer"`; hidden if `project.url` is undefined
-- [x] Screenshot: `alt` attribute set to project title
-- [x] Desktop: screenshot on right half; mobile: screenshot stacked below
-- [x] `accentColor` applied as a CSS variable passed via `:style` for panel tint
+- Props: `defineProps<{ project: Project; index: number; total: number }>()`
+- Renders: title (Bebas Neue), tagline (DM Mono), stack tags, screenshot (`<img loading="lazy">`), counter `01 / 05`
+- Live link: `target="_blank"` + `rel="noopener noreferrer"`; hidden if `project.url` is undefined
+- Screenshot: `alt` attribute set to project title
+- Desktop: screenshot on right half; mobile: screenshot stacked below
+- `accentColor` applied as a CSS variable passed via `:style` for panel tint
 
 **Verification:**
 
-- [x] `vp check` passes
+- `vp check` passes
 
 **Dependencies:** Tasks 3, 9
 
@@ -469,17 +469,17 @@ _All sections in this phase render real content from `portfolio.config.ts` with 
 
 **Acceptance criteria:**
 
-- [x] Section `id="work"`, `position: relative`, `height: calc(5 * 100vh)`
-- [x] Each panel: `position: sticky; top: 0; height: 100vh`
-- [x] All 5 projects render with correct content and per-project accent tint
-- [x] All content sourced from `portfolio.config.ts`
-- [x] Mobile layout: screenshot stacked below text
+- Section `id="work"`, `position: relative`, `height: calc(5 * 100vh)`
+- Each panel: `position: sticky; top: 0; height: 100vh`
+- All 5 projects render with correct content and per-project accent tint
+- All content sourced from `portfolio.config.ts`
+- Mobile layout: screenshot stacked below text
 
 **Verification:**
 
-- [x] `vp dev` — scroll through section, each panel sticks as expected
-- [x] All 5 project titles, taglines, and stacks visible
-- [x] `vp check` passes
+- `vp dev` — scroll through section, each panel sticks as expected
+- All 5 project titles, taglines, and stacks visible
+- `vp check` passes
 
 **Dependencies:** Tasks 4, 6, 11
 
@@ -497,17 +497,17 @@ _All sections in this phase render real content from `portfolio.config.ts` with 
 
 **Acceptance criteria:**
 
-- [x] `id="experience"` on section
-- [x] `ACCIONLABS` watermark: large, faded, behind timeline
-- [x] Thin `1px` left border for timeline track (using `--color-border`)
-- [x] 4 role cards, each with: title + period on one line, location, bullet highlights
-- [x] Roles ordered most-recent-first
-- [x] All content sourced from `portfolio.config.ts`
+- `id="experience"` on section
+- `ACCIONLABS` watermark: large, faded, behind timeline
+- Thin `1px` left border for timeline track (using `--color-border`)
+- 4 role cards, each with: title + period on one line, location, bullet highlights
+- Roles ordered most-recent-first
+- All content sourced from `portfolio.config.ts`
 
 **Verification:**
 
-- [x] `vp dev` — timeline renders correctly, all 4 roles visible
-- [x] `vp check` passes
+- `vp dev` — timeline renders correctly, all 4 roles visible
+- `vp check` passes
 
 **Dependencies:** Tasks 4, 6
 
@@ -525,16 +525,16 @@ _All sections in this phase render real content from `portfolio.config.ts` with 
 
 **Acceptance criteria:**
 
-- [x] Full viewport width, dark panel (`--color-surface`)
-- [x] `INNOVATION & ENGINEERING EXCELLENCE` as faded large background text (opacity ~0.05)
-- [x] Award title centered, large Bebas Neue, `--color-text`
-- [x] Event + date + location in DM Mono, `--color-muted`, small
-- [x] All content sourced from `portfolio.config.ts`
+- Full viewport width, dark panel (`--color-surface`)
+- `INNOVATION & ENGINEERING EXCELLENCE` as faded large background text (opacity ~0.05)
+- Award title centered, large Bebas Neue, `--color-text`
+- Event + date + location in DM Mono, `--color-muted`, small
+- All content sourced from `portfolio.config.ts`
 
 **Verification:**
 
-- [x] `vp dev` — award renders with watermark visible behind centered text
-- [x] `vp check` passes
+- `vp dev` — award renders with watermark visible behind centered text
+- `vp check` passes
 
 **Dependencies:** Tasks 4, 6
 
@@ -552,15 +552,15 @@ _All sections in this phase render real content from `portfolio.config.ts` with 
 
 **Acceptance criteria:**
 
-- [x] Accepts `skillGroups: SkillGroup[]` prop
-- [x] Renders category label + skill tags for each group
-- [x] Tags styled as pill badges in `--color-surface` with `--color-accent` text
-- [x] Layout visible and usable on mobile viewports
+- Accepts `skillGroups: SkillGroup[]` prop
+- Renders category label + skill tags for each group
+- Tags styled as pill badges in `--color-surface` with `--color-accent` text
+- Layout visible and usable on mobile viewports
 
 **Verification:**
 
-- [x] `vp dev` at mobile viewport — all skill groups and tags render correctly
-- [x] `vp check` passes
+- `vp dev` at mobile viewport — all skill groups and tags render correctly
+- `vp check` passes
 
 **Dependencies:** Tasks 3, 9
 
@@ -595,15 +595,15 @@ _All sections in this phase render real content from `portfolio.config.ts` with 
 
 **Acceptance criteria:**
 
-- [x] All three sections render with real data from `portfolio.config.ts`
-- [x] Contact section has no form
-- [x] External links have `rel="noopener noreferrer"`
-- [x] Education card is centered, minimal, no animations yet
+- All three sections render with real data from `portfolio.config.ts`
+- Contact section has no form
+- External links have `rel="noopener noreferrer"`
+- Education card is centered, minimal, no animations yet
 
 **Verification:**
 
-- [x] `vp dev` — all three sections render, contact email link works
-- [x] `vp check` passes
+- `vp dev` — all three sections render, contact email link works
+- `vp check` passes
 
 **Dependencies:** Tasks 4, 6, 15
 
@@ -619,13 +619,13 @@ _All sections in this phase render real content from `portfolio.config.ts` with 
 
 ### Checkpoint: Phase 3 — Static Site Complete
 
-- [x] `vp build` — zero errors, zero type errors
-- [x] `vp check` — exits 0
-- [x] `vp dev` — all 9 sections render with real content
-- [x] All content sourced from `portfolio.config.ts` — no hardcoded text in any component
-- [x] Mobile layout renders correctly at 375px viewport
-- [x] All external links have `rel="noopener noreferrer"`
-- [x] Sticky project panels work (CSS only)
+- `vp build` — zero errors, zero type errors
+- `vp check` — exits 0
+- `vp dev` — all 9 sections render with real content
+- All content sourced from `portfolio.config.ts` — no hardcoded text in any component
+- Mobile layout renders correctly at 375px viewport
+- All external links have `rel="noopener noreferrer"`
+- Sticky project panels work (CSS only)
 
 ---
 
@@ -639,20 +639,20 @@ _All sections in this phase render real content from `portfolio.config.ts` with 
 
 **Acceptance criteria:**
 
-- [ ] Desktop (pointer device): orbital system rendered with center node + 6 satellites
-- [ ] Satellite positions computed in Vue using trigonometry — no canvas, no Three.js
-- [ ] Mouse parallax: orbit plane tilts ±5° toward cursor via `useMouseInElement`
-- [ ] Hover on satellite: skill tags expand outward via GSAP `scale` animation
-- [ ] Mobile / touch (`@media (hover: none)`): tag list from Task 15 shown; orbital hidden
-- [ ] `prefers-reduced-motion` check: if reduced motion, skip tilt and expansion animations
-- [ ] GSAP cleanup in `onUnmounted`
+- [x] Desktop (pointer device): orbital system rendered with center node + 6 satellites
+- [x] Satellite positions computed in Vue using trigonometry — no canvas, no Three.js
+- [x] Mouse parallax: orbit plane tilts ±5° toward cursor via `useMouseInElement`
+- [x] Hover on satellite: skill tags expand outward via GSAP `scale` animation
+- [x] Mobile / touch (`@media (hover: none)`): tag list from Task 15 shown; orbital hidden
+- [x] `prefers-reduced-motion` check: if reduced motion, skip tilt and expansion animations
+- [x] GSAP cleanup in `onUnmounted`
 
 **Verification:**
 
-- [ ] `vp dev` on desktop — orbital renders, moves with mouse, hover expands skills
-- [ ] Resize to mobile — collapses to tag groups
-- [ ] DevTools: simulate `prefers-reduced-motion: reduce` — no tilt/expansion animations
-- [ ] `vp check` passes
+- [x] `vp dev` on desktop — orbital renders, moves with mouse, hover expands skills
+- [x] Resize to mobile — collapses to tag groups
+- [x] DevTools: simulate `prefers-reduced-motion: reduce` — no tilt/expansion animations
+- [x] `vp check` passes
 
 **Dependencies:** Tasks 2, 5, 15
 
@@ -677,17 +677,17 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Acceptance criteria:**
 
-- [ ] Crosshair renders at mouse position smoothly (GSAP quickSetter for performance)
-- [ ] Magnetic pull: cursor snaps toward nearest interactive element on hover
-- [ ] Degrades on touch devices: component renders `display: none` when `hover: none` media matches
-- [ ] `prefers-reduced-motion`: skip GSAP quickSetter, use direct position update
-- [ ] `onUnmounted` cleanup removes event listeners
+- Crosshair renders at mouse position smoothly (GSAP quickSetter for performance)
+- Magnetic pull: cursor snaps toward nearest interactive element on hover
+- Degrades on touch devices: component renders `display: none` when `hover: none` media matches
+- `prefers-reduced-motion`: skip GSAP quickSetter, use direct position update
+- `onUnmounted` cleanup removes event listeners
 
 **Verification:**
 
-- [ ] `vp dev` — custom cursor follows mouse, magnetic pull works on links/buttons
-- [ ] Mobile viewport — custom cursor not visible
-- [ ] `vp check` passes
+- `vp dev` — custom cursor follows mouse, magnetic pull works on links/buttons
+- Mobile viewport — custom cursor not visible
+- `vp check` passes
 
 **Dependencies:** Tasks 2, 5, 6
 
@@ -706,17 +706,17 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Acceptance criteria:**
 
-- [ ] `useHeroAnimation(nameEl, taglineEl)` exported from `useScrollAnimations.ts`
-- [ ] GSAP `fromTo` on `.char` spans: `y: 80 → 0`, `opacity: 0 → 1`, duration 0.4s, stagger 0.02s, `ease: 'power4.out'`
-- [ ] Tagline fades in after name animation completes (`delay` or timeline)
-- [ ] `prefers-reduced-motion`: elements set to final state immediately, no animation
-- [ ] `onUnmounted` cleanup
+- `useHeroAnimation(nameEl, taglineEl)` exported from `useScrollAnimations.ts`
+- GSAP `fromTo` on `.char` spans: `y: 80 → 0`, `opacity: 0 → 1`, duration 0.4s, stagger 0.02s, `ease: 'power4.out'`
+- Tagline fades in after name animation completes (`delay` or timeline)
+- `prefers-reduced-motion`: elements set to final state immediately, no animation
+- `onUnmounted` cleanup
 
 **Verification:**
 
-- [ ] `vp dev` — page load: name characters stagger in, tagline fades after
-- [ ] DevTools: `prefers-reduced-motion: reduce` — elements visible immediately
-- [ ] `vp check` passes
+- `vp dev` — page load: name characters stagger in, tagline fades after
+- DevTools: `prefers-reduced-motion: reduce` — elements visible immediately
+- `vp check` passes
 
 **Dependencies:** Tasks 2, 5, 10
 
@@ -735,16 +735,16 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Acceptance criteria:**
 
-- [ ] `useProjectsAnimation(sectionEl)` exported from `useScrollAnimations.ts`
-- [ ] Per-panel: title slides up (`y: 40 → 0`, `opacity: 0 → 1`), stack tags fade in sequentially, screenshot scales `0.8 → 1`
-- [ ] ScrollTrigger trigger: each panel's scroll position
-- [ ] `prefers-reduced-motion`: elements at final state, no animation
-- [ ] `onUnmounted` cleanup
+- `useProjectsAnimation(sectionEl)` exported from `useScrollAnimations.ts`
+- Per-panel: title slides up (`y: 40 → 0`, `opacity: 0 → 1`), stack tags fade in sequentially, screenshot scales `0.8 → 1`
+- ScrollTrigger trigger: each panel's scroll position
+- `prefers-reduced-motion`: elements at final state, no animation
+- `onUnmounted` cleanup
 
 **Verification:**
 
-- [ ] `vp dev` — scroll through projects: each panel animates in correctly
-- [ ] `vp check` passes
+- `vp dev` — scroll through projects: each panel animates in correctly
+- `vp check` passes
 
 **Dependencies:** Tasks 2, 5, 12
 
@@ -763,16 +763,16 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Acceptance criteria:**
 
-- [ ] `useExperienceAnimation(sectionEl)` exported from `useScrollAnimations.ts`
-- [ ] Role cards: `x: -20 → 0`, `opacity: 0 → 1` on scroll-enter
-- [ ] Highlights within each card fade in sequentially after card enters
-- [ ] `prefers-reduced-motion`: elements at final state
-- [ ] `onUnmounted` cleanup
+- `useExperienceAnimation(sectionEl)` exported from `useScrollAnimations.ts`
+- Role cards: `x: -20 → 0`, `opacity: 0 → 1` on scroll-enter
+- Highlights within each card fade in sequentially after card enters
+- `prefers-reduced-motion`: elements at final state
+- `onUnmounted` cleanup
 
 **Verification:**
 
-- [ ] `vp dev` — scroll into experience: cards slide in, highlights sequence
-- [ ] `vp check` passes
+- `vp dev` — scroll into experience: cards slide in, highlights sequence
+- `vp check` passes
 
 **Dependencies:** Tasks 2, 5, 13
 
@@ -791,15 +791,15 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Acceptance criteria:**
 
-- [ ] `useAwardAnimation(sectionEl)` exported from `useScrollAnimations.ts`
-- [ ] Award title + event details: `filter: blur(20px) → blur(0)`, `opacity: 0 → 1`
-- [ ] `prefers-reduced-motion`: fade only (`blur` skipped), no motion
-- [ ] `onUnmounted` cleanup
+- `useAwardAnimation(sectionEl)` exported from `useScrollAnimations.ts`
+- Award title + event details: `filter: blur(20px) → blur(0)`, `opacity: 0 → 1`
+- `prefers-reduced-motion`: fade only (`blur` skipped), no motion
+- `onUnmounted` cleanup
 
 **Verification:**
 
-- [ ] `vp dev` — scroll into award: text assembles from blur
-- [ ] `vp check` passes
+- `vp dev` — scroll into award: text assembles from blur
+- `vp check` passes
 
 **Dependencies:** Tasks 2, 5, 14
 
@@ -818,16 +818,16 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Acceptance criteria:**
 
-- [ ] Header hides (`translateY(-100%)`) within 100px of scroll-down start
-- [ ] Header reappears (`translateY(0)`) immediately on scroll-up
-- [ ] Background blur triggers after scrolling > 50px from top
-- [ ] GSAP cleanup in `onUnmounted`
-- [ ] `prefers-reduced-motion`: header always visible, skip translate animation
+- Header hides (`translateY(-100%)`) within 100px of scroll-down start
+- Header reappears (`translateY(0)`) immediately on scroll-up
+- Background blur triggers after scrolling > 50px from top
+- GSAP cleanup in `onUnmounted`
+- `prefers-reduced-motion`: header always visible, skip translate animation
 
 **Verification:**
 
-- [ ] `vp dev` — scroll down → header hides; scroll up → header reappears
-- [ ] `vp check` passes
+- `vp dev` — scroll down → header hides; scroll up → header reappears
+- `vp check` passes
 
 **Dependencies:** Tasks 2, 5, 7
 
@@ -842,12 +842,12 @@ _All sections are already rendering correct static content. This phase layers sc
 
 ### Checkpoint: Phase 5 — Animations Complete
 
-- [ ] `vp build` — zero errors
-- [ ] `vp check` — exits 0
-- [ ] All section animations trigger correctly on scroll
-- [ ] Custom cursor works on desktop, hidden on mobile
-- [ ] `prefers-reduced-motion: reduce` — all animations disabled / instant
-- [ ] GSAP not leaking: open DevTools → navigate away from dev → no ScrollTrigger errors
+- `vp build` — zero errors
+- `vp check` — exits 0
+- All section animations trigger correctly on scroll
+- Custom cursor works on desktop, hidden on mobile
+- `prefers-reduced-motion: reduce` — all animations disabled / instant
+- GSAP not leaking: open DevTools → navigate away from dev → no ScrollTrigger errors
 
 ---
 
@@ -870,13 +870,13 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Acceptance criteria:**
 
-- [ ] All 6 test cases pass
-- [ ] Coverage on `src/data/` ≥ 80%
-- [ ] `vp test --run` exits 0
+- All 6 test cases pass
+- Coverage on `src/data/` ≥ 80%
+- `vp test --run` exits 0
 
 **Verification:**
 
-- [ ] `vp test --run` — all tests pass
+- `vp test --run` — all tests pass
 
 **Dependencies:** Task 4
 
@@ -900,14 +900,14 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Acceptance criteria:**
 
-- [ ] All 3 cleanup tests pass
-- [ ] GSAP is mocked in tests (no real DOM required)
-- [ ] Coverage on `src/composables/` ≥ 80%
-- [ ] `vp test --run` exits 0
+- All 3 cleanup tests pass
+- GSAP is mocked in tests (no real DOM required)
+- Coverage on `src/composables/` ≥ 80%
+- `vp test --run` exits 0
 
 **Verification:**
 
-- [ ] `vp test --run` — all tests pass
+- `vp test --run` — all tests pass
 
 **Dependencies:** Tasks 5, 19–22
 
@@ -921,8 +921,8 @@ _All sections are already rendering correct static content. This phase layers sc
 
 ### Checkpoint: Phase 6 — Tests
 
-- [ ] `vp test --run` — all tests pass, 0 failures
-- [ ] Coverage ≥ 80% on `src/data/` and `src/composables/`
+- `vp test --run` — all tests pass, 0 failures
+- Coverage ≥ 80% on `src/data/` and `src/composables/`
 
 ---
 
@@ -936,13 +936,13 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Acceptance criteria:**
 
-- [ ] Valid SVG at `public/favicon.svg`
-- [ ] Renders correctly in browser tab
-- [ ] Referenced in `index.html` `<link rel="icon">`
+- Valid SVG at `public/favicon.svg`
+- Renders correctly in browser tab
+- Referenced in `index.html` `<link rel="icon">`
 
 **Verification:**
 
-- [ ] `vp dev` — browser tab shows DKD favicon
+- `vp dev` — browser tab shows DKD favicon
 
 **Dependencies:** Task 0
 
@@ -961,14 +961,14 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Acceptance criteria:**
 
-- [ ] `og:title`, `og:description`, `og:image`, `og:url` meta tags present in `index.html`
-- [ ] `twitter:card`, `twitter:title`, `twitter:image` present
-- [ ] `public/og-image.png` exists at 1200×630px
-- [ ] `<title>Deepak Kumar Dewani — Senior Frontend Engineer</title>` in `index.html`
+- `og:title`, `og:description`, `og:image`, `og:url` meta tags present in `index.html`
+- `twitter:card`, `twitter:title`, `twitter:image` present
+- `public/og-image.png` exists at 1200×630px
+- `<title>Deepak Kumar Dewani — Senior Frontend Engineer</title>` in `index.html`
 
 **Verification:**
 
-- [ ] `vp build` — meta tags present in `/dist/index.html`
+- `vp build` — meta tags present in `/dist/index.html`
 
 **Dependencies:** Task 0
 
@@ -987,20 +987,20 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Checklist:**
 
-- [ ] Tab through entire page — all interactive elements reachable
-- [ ] Focus rings visible on all focusable elements
-- [ ] All `<img>` have `alt` attributes
-- [ ] `<nav>` wraps header navigation
-- [ ] `<main>` wraps content sections
-- [ ] Hamburger button has `aria-expanded` and `aria-controls`
-- [ ] Icon-only links have `aria-label`
-- [ ] Section headings follow correct `h1` → `h2` → `h3` hierarchy
-- [ ] `prefers-reduced-motion: reduce` verified in DevTools
+- Tab through entire page — all interactive elements reachable
+- Focus rings visible on all focusable elements
+- All `<img>` have `alt` attributes
+- `<nav>` wraps header navigation
+- `<main>` wraps content sections
+- Hamburger button has `aria-expanded` and `aria-controls`
+- Icon-only links have `aria-label`
+- Section headings follow correct `h1` → `h2` → `h3` hierarchy
+- `prefers-reduced-motion: reduce` verified in DevTools
 
 **Verification:**
 
-- [ ] Lighthouse Accessibility score = 100
-- [ ] `vp check` passes
+- Lighthouse Accessibility score = 100
+- `vp check` passes
 
 **Dependencies:** Tasks 7–23
 
@@ -1022,20 +1022,20 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Acceptance criteria:**
 
-- [ ] `vp build` produces `/dist` with no errors
-- [ ] `vp check` passes (lint + format + type-check)
-- [ ] `vp preview` — production build renders correctly locally
-- [ ] `vercel --prod` deploys successfully
-- [ ] Deployed URL renders site at `deepakd.me`
-- [ ] Lighthouse Performance ≥ 95, Accessibility = 100, Best Practices = 100
-- [ ] LCP < 2.5s on simulated 4G (Chrome DevTools → Lighthouse)
-- [ ] CLS = 0
+- `vp build` produces `/dist` with no errors
+- `vp check` passes (lint + format + type-check)
+- `vp preview` — production build renders correctly locally
+- `vercel --prod` deploys successfully
+- Deployed URL renders site at `deepakd.me`
+- Lighthouse Performance ≥ 95, Accessibility = 100, Best Practices = 100
+- LCP < 2.5s on simulated 4G (Chrome DevTools → Lighthouse)
+- CLS = 0
 
 **Verification:**
 
-- [ ] `vp build` — zero errors
-- [ ] `vp check` — exits 0
-- [ ] Lighthouse audit on production URL
+- `vp build` — zero errors
+- `vp check` — exits 0
+- Lighthouse audit on production URL
 
 **Dependencies:** All previous tasks
 
@@ -1050,21 +1050,21 @@ _All sections are already rendering correct static content. This phase layers sc
 
 ### Final Checkpoint: Ship
 
-- [ ] `vp build` — zero errors, zero type errors
-- [ ] `vp check` — exits 0
-- [ ] `vp test --run` — all tests pass
-- [ ] Lighthouse: Performance ≥ 95, Accessibility = 100, Best Practices = 100
-- [ ] LCP < 2.5s on simulated 4G
-- [ ] CLS = 0
-- [ ] All 5 project panels render with correct content and animations
-- [ ] Orbital skills responds to mouse on desktop; degrades to tag list on mobile
-- [ ] `prefers-reduced-motion: reduce` — all animations disabled
-- [ ] `portfolio.config.ts` edit → `vp dev` hot reload reflects change in UI
-- [ ] Zod throws descriptively if required field removed from config
-- [ ] Keyboard navigation works end-to-end
-- [ ] Custom cursor active on desktop, hidden on mobile
-- [ ] All external links have `rel="noopener noreferrer"`
-- [ ] Site live at `deepakd.me`
+- `vp build` — zero errors, zero type errors
+- `vp check` — exits 0
+- `vp test --run` — all tests pass
+- Lighthouse: Performance ≥ 95, Accessibility = 100, Best Practices = 100
+- LCP < 2.5s on simulated 4G
+- CLS = 0
+- All 5 project panels render with correct content and animations
+- Orbital skills responds to mouse on desktop; degrades to tag list on mobile
+- `prefers-reduced-motion: reduce` — all animations disabled
+- `portfolio.config.ts` edit → `vp dev` hot reload reflects change in UI
+- Zod throws descriptively if required field removed from config
+- Keyboard navigation works end-to-end
+- Custom cursor active on desktop, hidden on mobile
+- All external links have `rel="noopener noreferrer"`
+- Site live at `deepakd.me`
 
 ---
 

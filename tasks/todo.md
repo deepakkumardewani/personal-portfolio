@@ -50,6 +50,13 @@ Completed (see `agent-docs/TASKS.md` and Phase 3 checkpoint).
 
 **Tests added:** `HeroSection.test.ts`, `ProjectCard.test.ts`, `phase3-sections.test.ts`
 
-## Phase 4+ (pending)
+## Phase 4: Skills Orbital (Desktop) — Task 17
 
-See `agent-docs/TASKS.md` for skills orbital, animations, and later phases.
+- [x] Impl
+- [x] Test (see `SkillOrbit.test.ts`, `skillOrbitLayout.test.ts`)
+
+**Dependencies:** Tasks 2, 5, 15 (complete in `agent-docs/TASKS.md`)
+
+## Phase 5+ (pending)
+
+See `agent-docs/TASKS.md` for scroll animations, tests, and later phases.

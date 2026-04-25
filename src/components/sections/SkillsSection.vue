@@ -23,7 +23,7 @@ import SectionLabel from "@/components/ui/SectionLabel.vue";
 }
 
 .skills__inner {
-  max-width: 900px;
+  max-width: min(100%, 64rem);
   margin: 0 auto;
 }
 
