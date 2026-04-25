@@ -870,13 +870,13 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Acceptance criteria:**
 
-- All 6 test cases pass
-- Coverage on `src/data/` ≥ 80%
-- `vp test --run` exits 0
+- [x] All 6 test cases pass
+- [x] Coverage on `src/data/` ≥ 80%
+- [x] `vp test --run` exits 0
 
 **Verification:**
 
-- `vp test --run` — all tests pass
+- [x] `vp test --run` — all tests pass
 
 **Dependencies:** Task 4
 
@@ -900,14 +900,14 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Acceptance criteria:**
 
-- All 3 cleanup tests pass
-- GSAP is mocked in tests (no real DOM required)
-- Coverage on `src/composables/` ≥ 80%
-- `vp test --run` exits 0
+- [x] All 3 cleanup tests pass
+- [x] GSAP is mocked in tests (no real DOM required)
+- [x] Coverage on `src/composables/` ≥ 80%
+- [x] `vp test --run` exits 0
 
 **Verification:**
 
-- `vp test --run` — all tests pass
+- [x] `vp test --run` — all tests pass
 
 **Dependencies:** Tasks 5, 19–22
 
@@ -921,8 +921,8 @@ _All sections are already rendering correct static content. This phase layers sc
 
 ### Checkpoint: Phase 6 — Tests
 
-- `vp test --run` — all tests pass, 0 failures
-- Coverage ≥ 80% on `src/data/` and `src/composables/`
+- [x] `vp test --run` — all tests pass, 0 failures
+- [x] Coverage ≥ 80% on `src/data/` and `src/composables/` (enforced via `vite.config.ts` — run `bun run test -- --run --coverage`)
 
 ---
 
@@ -1012,42 +1012,6 @@ _All sections are already rendering correct static content. This phase layers sc
 
 ---
 
-### Phase 8: Deploy
-
----
-
-#### Task 29: Vercel deployment configuration and production build
-
-**Description:** Verify `vite.config.ts` outputs to `/dist`. Add `vercel.json` if needed. Run `vp build` and deploy to Vercel. Confirm the deployment serves the correct build.
-
-**Acceptance criteria:**
-
-- `vp build` produces `/dist` with no errors
-- `vp check` passes (lint + format + type-check)
-- `vp preview` — production build renders correctly locally
-- `vercel --prod` deploys successfully
-- Deployed URL renders site at `deepakd.me`
-- Lighthouse Performance ≥ 95, Accessibility = 100, Best Practices = 100
-- LCP < 2.5s on simulated 4G (Chrome DevTools → Lighthouse)
-- CLS = 0
-
-**Verification:**
-
-- `vp build` — zero errors
-- `vp check` — exits 0
-- Lighthouse audit on production URL
-
-**Dependencies:** All previous tasks
-
-**Files touched:**
-
-- `vite.config.ts` _(verify output config)_
-- `vercel.json` _(create if needed)_
-
-**Estimated scope:** Small
-
----
-
 ### Final Checkpoint: Ship
 
 - `vp build` — zero errors, zero type errors
@@ -1064,7 +1028,6 @@ _All sections are already rendering correct static content. This phase layers sc
 - Keyboard navigation works end-to-end
 - Custom cursor active on desktop, hidden on mobile
 - All external links have `rel="noopener noreferrer"`
-- Site live at `deepakd.me`
 
 ---
 

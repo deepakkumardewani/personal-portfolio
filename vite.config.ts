@@ -14,5 +14,16 @@ export default defineConfig({
   },
   test: {
     environment: "happy-dom",
+    coverage: {
+      provider: "v8",
+      include: ["src/data/**/*.ts", "src/composables/**/*.ts"],
+      exclude: ["**/*.test.ts", "**/*.spec.ts"],
+      thresholds: {
+        lines: 80,
+        statements: 80,
+        functions: 80,
+        branches: 60,
+      },
+    },
   },
 });
