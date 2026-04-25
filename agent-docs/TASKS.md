@@ -281,16 +281,16 @@ resolve: {
 
 **Acceptance criteria:**
 
-- [ ] All 9 layout/section components imported and rendered in `App.vue`
-- [ ] Each section stub renders a placeholder `<section>` with correct `id` attribute
-- [ ] `<CustomCursor />` mounted as a global overlay in `App.vue`
-- [ ] Page scrolls end-to-end without layout errors
-- [ ] No section renders content yet — stubs only
+- [x] All 9 layout/section components imported and rendered in `App.vue`
+- [x] Each section stub renders a placeholder `<section>` with correct `id` attribute
+- [x] `<CustomCursor />` mounted as a global overlay in `App.vue`
+- [x] Page scrolls end-to-end without layout errors
+- [x] No section renders content yet — stubs only
 
 **Verification:**
 
-- [ ] `vp dev` — page renders, all section `id` anchors present in DOM
-- [ ] `vp check` passes
+- [x] `vp dev` — page renders, all section `id` anchors present in DOM
+- [x] `vp check` passes
 
 **Dependencies:** Tasks 1–5
 
@@ -318,24 +318,24 @@ resolve: {
 
 **Acceptance criteria:**
 
-- [ ] `position: fixed`, full width, `z-index: 100`
-- [ ] Background: transparent on load → `--color-bg` at 85% opacity + `backdrop-filter: blur` on scroll
-- [ ] GSAP: translates `-100%` on scroll down, `0` on scroll up
-- [ ] Left: `DKD` monogram in Bebas Neue, links to `#hero`
-- [ ] Right: `Work · Experience · Skills · Contact` in DM Mono small caps; anchors `#work`, `#experience`, `#skills`, `#contact`
-- [ ] Active nav link highlighted via `useIntersectionObserver` on each section
-- [ ] Mobile (<768px): hamburger button visible; nav links hidden
-- [ ] Hamburger opens full-width drawer; closes on link click or outside tap
-- [ ] Hamburger has `aria-expanded` and `aria-controls`
-- [ ] Fully keyboard navigable (tab order correct, focus rings visible)
-- [ ] GSAP ScrollTrigger killed in `onUnmounted`
+- [x] `position: fixed`, full width, `z-index: 100`
+- [x] Background: transparent on load → `--color-bg` at 85% opacity + `backdrop-filter: blur` on scroll
+- [x] GSAP: translates `-100%` on scroll down, `0` on scroll up
+- [x] Left: `DKD` monogram in Bebas Neue, links to `#hero`
+- [x] Right: `Work · Experience · Skills · Contact` in DM Mono small caps; anchors `#work`, `#experience`, `#skills`, `#contact`
+- [x] Active nav link highlighted via `useIntersectionObserver` on each section
+- [x] Mobile (<768px): hamburger button visible; nav links hidden
+- [x] Hamburger opens full-width drawer; closes on link click or outside tap
+- [x] Hamburger has `aria-expanded` and `aria-controls`
+- [x] Fully keyboard navigable (tab order correct, focus rings visible)
+- [x] GSAP ScrollTrigger killed in `onUnmounted`
 
 **Verification:**
 
-- [ ] `vp dev` — scroll down → header hides; scroll up → header appears
-- [ ] Resize to <768px — hamburger visible; click → drawer opens/closes
-- [ ] Tab through nav — all links reachable via keyboard
-- [ ] `vp check` passes
+- [x] `vp dev` — scroll down → header hides; scroll up → header appears
+- [x] Resize to <768px — hamburger visible; click → drawer opens/closes
+- [x] Tab through nav — all links reachable via keyboard
+- [x] `vp check` passes
 
 **Dependencies:** Task 6
 
@@ -353,17 +353,17 @@ resolve: {
 
 **Acceptance criteria:**
 
-- [ ] `© 2026 Deepak Kumar Dewani` in DM Mono, `--color-muted`, left-aligned
-- [ ] LinkedIn, GitHub, email icon links right-aligned
-- [ ] Each icon link has `aria-label`
-- [ ] All external links include `rel="noopener noreferrer" target="_blank"`
-- [ ] No hardcoded URLs — all sourced from `portfolio.config.ts`
+- [x] `© 2026 Deepak Kumar Dewani` in DM Mono, `--color-muted`, left-aligned
+- [x] LinkedIn, GitHub, email icon links right-aligned
+- [x] Each icon link has `aria-label`
+- [x] All external links include `rel="noopener noreferrer" target="_blank"`
+- [x] No hardcoded URLs — all sourced from `portfolio.config.ts`
 
 **Verification:**
 
-- [ ] `vp dev` — footer renders at bottom of page
-- [ ] Inspect links — `rel` attribute present on all external links
-- [ ] `vp check` passes
+- [x] `vp dev` — footer renders at bottom of page
+- [x] Inspect links — `rel` attribute present on all external links
+- [x] `vp check` passes
 
 **Dependencies:** Tasks 4, 6
 
@@ -381,13 +381,13 @@ resolve: {
 
 **Acceptance criteria:**
 
-- [ ] Props typed with `defineProps<{ index: string; label: string }>()`
-- [ ] Renders `{index} / {label}` in DM Mono, `--color-muted`
-- [ ] No hardcoded content
+- [x] Props typed with `defineProps<{ index: string; label: string }>()`
+- [x] Renders `{index} / {label}` in DM Mono, `--color-muted`
+- [x] No hardcoded content
 
 **Verification:**
 
-- [ ] `vp check` passes
+- [x] `vp check` passes
 
 **Dependencies:** Task 6
 

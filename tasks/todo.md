@@ -27,6 +27,15 @@ Tasks 1–5: **Impl** and **acceptance** tracked in `agent-docs/TASKS.md` (all c
 
 ---
 
-## Phase 2+ (pending)
+## Phase 2: Layout Shell (Tasks 6–9)
 
-See `agent-docs/TASKS.md` for layout shell and later phases.
+Completed — details and checkboxes in `agent-docs/TASKS.md`.
+
+- [x] Task 6 — `App.vue` shell and section stubs
+- [x] Task 7 — `SiteHeader` (fixed nav, scroll, mobile drawer)
+- [x] Task 8 — `SiteFooter` (config-driven links and copyright)
+- [x] Task 9 — `SectionLabel` UI
+
+## Phase 3+ (pending)
+
+See `agent-docs/TASKS.md` for static sections and later phases.

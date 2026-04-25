@@ -14,8 +14,10 @@
     "@fontsource/bebas-neue": "^5.2.7",
     "@fontsource/dm-mono": "^5.2.7",
     "@fontsource/instrument-sans": "^5.2.8",
+    "@vue/test-utils": "^2.4.8",
     "@vueuse/core": "^14.2.1",
     "gsap": "^3.15.0",
+    "happy-dom": "^20.9.0",
     "vue": "^3.5.32",
     "zod": "^4.3.6"
   },
