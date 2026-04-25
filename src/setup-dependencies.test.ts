@@ -1,7 +1,8 @@
 import { useMouseInElement } from "@vueuse/core";
-import gsap from "gsap";
 import { describe, expect, it } from "vitest";
 import { z } from "zod";
+
+import { gsap } from "./utils/gsap";
 
 describe("Phase 0 dependencies", () => {
   it("resolves gsap, VueUse, and Zod", () => {
