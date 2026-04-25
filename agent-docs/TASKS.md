@@ -71,21 +71,21 @@ resolve: {
 
 **Acceptance criteria:**
 
-- [ ] `vp dev` starts without errors
-- [ ] `vp build` completes without errors
-- [ ] `vp check` passes (lint + format + type-check)
-- [ ] `import gsap from 'gsap'` resolves without error
-- [ ] `import { useMouseInElement } from '@vueuse/core'` resolves without error
-- [ ] `import { z } from 'zod'` resolves without error
-- [ ] All three `@fontsource` packages installed in `node_modules`
-- [ ] TypeScript strict mode enabled in `tsconfig.json`
-- [ ] `@/` alias resolves to `src/`
+- [x] `vp dev` starts without errors
+- [x] `vp build` completes without errors
+- [x] `vp check` passes (lint + format + type-check)
+- [x] `import gsap from 'gsap'` resolves without error
+- [x] `import { useMouseInElement } from '@vueuse/core'` resolves without error
+- [x] `import { z } from 'zod'` resolves without error
+- [x] All three `@fontsource` packages installed in `node_modules`
+- [x] TypeScript strict mode enabled in `tsconfig.json` _(via `tsconfig.app.json`)_
+- [x] `@/` alias resolves to `src/`
 
 **Verification:**
 
-- [ ] `vp dev` — browser opens, blank page with no console errors
-- [ ] `vp build` — `/dist` directory created, no type errors
-- [ ] `vp check` — exits 0
+- [x] `vp dev` — browser opens, blank page with no console errors
+- [x] `vp build` — `/dist` directory created, no type errors
+- [x] `vp check` — exits 0
 
 **Dependencies:** None
 
@@ -111,19 +111,19 @@ resolve: {
 
 **Acceptance criteria:**
 
-- [ ] All color tokens defined as CSS custom properties matching SPEC exactly (8 tokens: `--color-bg`, `--color-surface`, `--color-border`, `--color-text`, `--color-muted`, `--color-accent`, `--color-accent-dim`, `--color-white`)
-- [ ] Bebas Neue, DM Mono, and Instrument Sans load from `@fontsource` with `font-display: swap`
-- [ ] CSS reset applied (box-sizing, margin/padding reset, `cursor: none` on `body`)
-- [ ] Base `font-family`, `background-color`, and `color` set on `:root` / `body`
-- [ ] `sr-only` utility class defined in `utilities.css`
-- [ ] `scroll-behavior: smooth` applied globally
-- [ ] No hex values hardcoded outside `global.css`
+- [x] All color tokens defined as CSS custom properties matching SPEC exactly (8 tokens: `--color-bg`, `--color-surface`, `--color-border`, `--color-text`, `--color-muted`, `--color-accent`, `--color-accent-dim`, `--color-white`)
+- [x] Bebas Neue, DM Mono, and Instrument Sans load from `@fontsource` with `font-display: swap`
+- [x] CSS reset applied (box-sizing, margin/padding reset, `cursor: none` on `body`)
+- [x] Base `font-family`, `background-color`, and `color` set on `:root` / `body`
+- [x] `sr-only` utility class defined in `utilities.css`
+- [x] `scroll-behavior: smooth` applied globally
+- [x] No hex values hardcoded outside `global.css`
 
 **Verification:**
 
-- [ ] `vp dev` — page background is `#080808`, no white flash
-- [ ] Browser DevTools confirms fonts loading from local (not Google Fonts CDN)
-- [ ] `vp check` passes
+- [x] `vp dev` — page background is `#080808`, no white flash
+- [x] Browser DevTools confirms fonts loading from local (not Google Fonts CDN)
+- [x] `vp check` passes
 
 **Dependencies:** Task 0
 
@@ -144,14 +144,14 @@ resolve: {
 
 **Acceptance criteria:**
 
-- [ ] `gsap` and `ScrollTrigger` exported from `src/utils/gsap.ts`
-- [ ] `gsap.registerPlugin(ScrollTrigger)` called once at module level
-- [ ] No other file in the project imports from `'gsap'` directly — all import from `'@/utils/gsap'`
+- [x] `gsap` and `ScrollTrigger` exported from `src/utils/gsap.ts`
+- [x] `gsap.registerPlugin(ScrollTrigger)` called once at module level
+- [x] No other file in the project imports from `'gsap'` directly — all import from `'@/utils/gsap'` _(test smoke uses a relative import to the same module for type-check)_
 
 **Verification:**
 
-- [ ] `vp build` — no duplicate GSAP registration warnings
-- [ ] `vp check` passes
+- [x] `vp build` — no duplicate GSAP registration warnings
+- [x] `vp check` passes
 
 **Dependencies:** Task 0
 
@@ -171,14 +171,14 @@ resolve: {
 
 **Acceptance criteria:**
 
-- [ ] All interfaces defined with correct field names and types matching SPEC data model
-- [ ] No use of `any` — all fields explicitly typed
-- [ ] Optional fields marked with `?`
-- [ ] File exports all interfaces as named exports
+- [x] All interfaces defined with correct field names and types matching SPEC data model
+- [x] No use of `any` — all fields explicitly typed
+- [x] Optional fields marked with `?`
+- [x] File exports all interfaces as named exports
 
 **Verification:**
 
-- [ ] `vp check` — no type errors
+- [x] `vp check` — no type errors
 
 **Dependencies:** Task 0
 
@@ -206,18 +206,18 @@ resolve: {
 
 **Acceptance criteria:**
 
-- [ ] `PortfolioConfigSchema.parse(...)` succeeds without throwing
-- [ ] All 5 projects populated with `id`, `title`, `tagline`, `description`, `stack`, `url`, `image`, `accentColor`, `year`
-- [ ] All 4 AccionLabs roles populated with `title`, `period`, `location`, `highlights`
-- [ ] `export type PortfolioConfig = z.infer<typeof PortfolioConfigSchema>` present
-- [ ] Removing a required field causes Zod to throw with the field path in the error message
-- [ ] No hex values used in components — only `accentColor` lives in config
+- [x] `PortfolioConfigSchema.parse(...)` succeeds without throwing
+- [x] All 5 projects populated with `id`, `title`, `tagline`, `description`, `stack`, `url`, `image`, `accentColor`, `year`
+- [x] All 4 AccionLabs roles populated with `title`, `period`, `location`, `highlights`
+- [x] `export type PortfolioConfig = z.infer<typeof PortfolioConfigSchema>` present
+- [x] Removing a required field causes Zod to throw with the field path in the error message
+- [x] No hex values used in components — only `accentColor` lives in config
 
 **Verification:**
 
-- [ ] `vp build` — no type errors
-- [ ] Manually delete a required field and confirm Zod throws descriptively
-- [ ] `vp check` passes
+- [x] `vp build` — no type errors
+- [x] Manually delete a required field and confirm Zod throws descriptively
+- [x] `vp check` passes
 
 **Dependencies:** Tasks 2 (types)
 
@@ -236,15 +236,15 @@ resolve: {
 
 **Acceptance criteria:**
 
-- [ ] All three files exist and export named functions
-- [ ] Each animation function in `useScrollAnimations.ts` calls `ScrollTrigger.getAll().forEach(t => t.kill())` in `onUnmounted`
-- [ ] No GSAP animation logic yet — stubs only
-- [ ] `useTheme.ts` exports an empty `useTheme()` function with a TODO comment
-- [ ] All composables prefixed `use*`
+- [x] All three files exist and export named functions
+- [x] Each animation function in `useScrollAnimations.ts` calls `ScrollTrigger.getAll().forEach(t => t.kill())` in `onUnmounted`
+- [x] No GSAP animation logic yet — stubs only
+- [x] `useTheme.ts` exports an empty `useTheme()` function with a TODO comment
+- [x] All composables prefixed `use*`
 
 **Verification:**
 
-- [ ] `vp check` passes — no TypeScript errors on the stubs
+- [x] `vp check` passes — no TypeScript errors on the stubs
 
 **Dependencies:** Tasks 2, 3
 
@@ -260,10 +260,10 @@ resolve: {
 
 ### Checkpoint: Phase 1
 
-- [ ] `vp build` — zero errors, zero type errors
-- [ ] `vp check` — exits 0
-- [ ] `vp dev` — blank dark page with correct background color, fonts loaded
-- [ ] `portfolio.config.ts` parse succeeds; all 5 projects, 4 roles, 6 skill groups present
+- [x] `vp build` — zero errors, zero type errors
+- [x] `vp check` — exits 0
+- [x] `vp dev` — blank dark page with correct background color, fonts loaded
+- [x] `portfolio.config.ts` parse succeeds; all 5 projects, 4 roles, 6 skill groups present
 
 ---
 

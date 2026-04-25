@@ -4,17 +4,7 @@
 
 ### Task 0: Scaffold Vue + TypeScript project with Vite+ and install all dependencies
 
-**Acceptance criteria**
-
-- [x] `vp dev` starts without errors
-- [x] `vp build` completes without errors
-- [x] `vp check` passes (lint + format + type-check)
-- [x] `import gsap from 'gsap'` resolves without error
-- [x] `import { useMouseInElement } from '@vueuse/core'` resolves without error
-- [x] `import { z } from 'zod'` resolves without error
-- [x] All three `@fontsource` packages installed in `node_modules`
-- [x] TypeScript strict mode enabled in `tsconfig.app.json`
-- [x] `@/` alias resolves to `src/` (Vite `resolve.alias` + `tsconfig` `paths`)
+**Acceptance criteria:** _(see `agent-docs/TASKS.md`; all checked)_
 
 **Test targets:** `src/setup-dependencies.test.ts` — dependency import smoke
 
@@ -25,6 +15,18 @@
 
 ---
 
-## Phase 1+ (pending)
+## Phase 1: Foundation
 
-See `agent-docs/TASKS.md` for remaining phases.
+Tasks 1–5: **Impl** and **acceptance** tracked in `agent-docs/TASKS.md` (all checkboxes for Phase 0–1 and the Phase 1 checkpoint are complete).
+
+- [x] Task 1 — Global styles, fonts
+- [x] Task 2 — `src/utils/gsap.ts`
+- [x] Task 3 — `src/types/portfolio.ts`
+- [x] Task 4 — `src/data/portfolio.config.ts`
+- [x] Task 5 — composable scaffolds
+
+---
+
+## Phase 2+ (pending)
+
+See `agent-docs/TASKS.md` for layout shell and later phases.
