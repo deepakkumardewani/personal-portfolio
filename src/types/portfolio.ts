@@ -52,6 +52,7 @@ export interface PortfolioConfig {
   name: string;
   title: string;
   tagline: string;
+  contactCta: string;
   email: string;
   phone?: string;
   location: string;

@@ -411,19 +411,19 @@ _All sections in this phase render real content from `portfolio.config.ts` with 
 
 **Acceptance criteria:**
 
-- [ ] `height: 100dvh`, full viewport
-- [ ] `DEEPAK KUMAR DEWANI` rendered in Bebas Neue, large — intentionally clips viewport edges
-- [ ] Each character wrapped in `<span class="char">` (manual split — not GSAP SplitText)
-- [ ] Tagline `8 years. One company. Four promotions. 14 million users.` in DM Mono, below name
-- [ ] Radial glow: `radial-gradient` from `--color-accent-dim` to transparent behind text
-- [ ] Scroll cue: thin vertical line at bottom center with CSS pulse keyframe animation
-- [ ] No photo, no image
-- [ ] All content sourced from `portfolio.config.ts` (`name`, `tagline`)
+- [x] `height: 100dvh`, full viewport
+- [x] `DEEPAK KUMAR DEWANI` rendered in Bebas Neue, large — intentionally clips viewport edges
+- [x] Each character wrapped in `<span class="char">` (manual split — not GSAP SplitText)
+- [x] Tagline `8 years. One company. Four promotions. 14 million users.` in DM Mono, below name
+- [x] Radial glow: `radial-gradient` from `--color-accent-dim` to transparent behind text
+- [x] Scroll cue: thin vertical line at bottom center with CSS pulse keyframe animation
+- [x] No photo, no image
+- [x] All content sourced from `portfolio.config.ts` (`name`, `tagline`)
 
 **Verification:**
 
-- [ ] `vp dev` — name fills viewport, tagline visible, scroll cue pulses
-- [ ] `vp check` passes
+- [x] `vp dev` — name fills viewport, tagline visible, scroll cue pulses
+- [x] `vp check` passes
 
 **Dependencies:** Tasks 1, 4, 6
 
@@ -442,16 +442,16 @@ _All sections in this phase render real content from `portfolio.config.ts` with 
 
 **Acceptance criteria:**
 
-- [ ] Props: `defineProps<{ project: Project; index: number; total: number }>()`
-- [ ] Renders: title (Bebas Neue), tagline (DM Mono), stack tags, screenshot (`<img loading="lazy">`), counter `01 / 05`
-- [ ] Live link: `target="_blank"` + `rel="noopener noreferrer"`; hidden if `project.url` is undefined
-- [ ] Screenshot: `alt` attribute set to project title
-- [ ] Desktop: screenshot on right half; mobile: screenshot stacked below
-- [ ] `accentColor` applied as a CSS variable passed via `:style` for panel tint
+- [x] Props: `defineProps<{ project: Project; index: number; total: number }>()`
+- [x] Renders: title (Bebas Neue), tagline (DM Mono), stack tags, screenshot (`<img loading="lazy">`), counter `01 / 05`
+- [x] Live link: `target="_blank"` + `rel="noopener noreferrer"`; hidden if `project.url` is undefined
+- [x] Screenshot: `alt` attribute set to project title
+- [x] Desktop: screenshot on right half; mobile: screenshot stacked below
+- [x] `accentColor` applied as a CSS variable passed via `:style` for panel tint
 
 **Verification:**
 
-- [ ] `vp check` passes
+- [x] `vp check` passes
 
 **Dependencies:** Tasks 3, 9
 
@@ -469,17 +469,17 @@ _All sections in this phase render real content from `portfolio.config.ts` with 
 
 **Acceptance criteria:**
 
-- [ ] Section `id="work"`, `position: relative`, `height: calc(5 * 100vh)`
-- [ ] Each panel: `position: sticky; top: 0; height: 100vh`
-- [ ] All 5 projects render with correct content and per-project accent tint
-- [ ] All content sourced from `portfolio.config.ts`
-- [ ] Mobile layout: screenshot stacked below text
+- [x] Section `id="work"`, `position: relative`, `height: calc(5 * 100vh)`
+- [x] Each panel: `position: sticky; top: 0; height: 100vh`
+- [x] All 5 projects render with correct content and per-project accent tint
+- [x] All content sourced from `portfolio.config.ts`
+- [x] Mobile layout: screenshot stacked below text
 
 **Verification:**
 
-- [ ] `vp dev` — scroll through section, each panel sticks as expected
-- [ ] All 5 project titles, taglines, and stacks visible
-- [ ] `vp check` passes
+- [x] `vp dev` — scroll through section, each panel sticks as expected
+- [x] All 5 project titles, taglines, and stacks visible
+- [x] `vp check` passes
 
 **Dependencies:** Tasks 4, 6, 11
 
@@ -497,17 +497,17 @@ _All sections in this phase render real content from `portfolio.config.ts` with 
 
 **Acceptance criteria:**
 
-- [ ] `id="experience"` on section
-- [ ] `ACCIONLABS` watermark: large, faded, behind timeline
-- [ ] Thin `1px` left border for timeline track (using `--color-border`)
-- [ ] 4 role cards, each with: title + period on one line, location, bullet highlights
-- [ ] Roles ordered most-recent-first
-- [ ] All content sourced from `portfolio.config.ts`
+- [x] `id="experience"` on section
+- [x] `ACCIONLABS` watermark: large, faded, behind timeline
+- [x] Thin `1px` left border for timeline track (using `--color-border`)
+- [x] 4 role cards, each with: title + period on one line, location, bullet highlights
+- [x] Roles ordered most-recent-first
+- [x] All content sourced from `portfolio.config.ts`
 
 **Verification:**
 
-- [ ] `vp dev` — timeline renders correctly, all 4 roles visible
-- [ ] `vp check` passes
+- [x] `vp dev` — timeline renders correctly, all 4 roles visible
+- [x] `vp check` passes
 
 **Dependencies:** Tasks 4, 6
 
@@ -525,16 +525,16 @@ _All sections in this phase render real content from `portfolio.config.ts` with 
 
 **Acceptance criteria:**
 
-- [ ] Full viewport width, dark panel (`--color-surface`)
-- [ ] `INNOVATION & ENGINEERING EXCELLENCE` as faded large background text (opacity ~0.05)
-- [ ] Award title centered, large Bebas Neue, `--color-text`
-- [ ] Event + date + location in DM Mono, `--color-muted`, small
-- [ ] All content sourced from `portfolio.config.ts`
+- [x] Full viewport width, dark panel (`--color-surface`)
+- [x] `INNOVATION & ENGINEERING EXCELLENCE` as faded large background text (opacity ~0.05)
+- [x] Award title centered, large Bebas Neue, `--color-text`
+- [x] Event + date + location in DM Mono, `--color-muted`, small
+- [x] All content sourced from `portfolio.config.ts`
 
 **Verification:**
 
-- [ ] `vp dev` — award renders with watermark visible behind centered text
-- [ ] `vp check` passes
+- [x] `vp dev` — award renders with watermark visible behind centered text
+- [x] `vp check` passes
 
 **Dependencies:** Tasks 4, 6
 
@@ -552,15 +552,15 @@ _All sections in this phase render real content from `portfolio.config.ts` with 
 
 **Acceptance criteria:**
 
-- [ ] Accepts `skillGroups: SkillGroup[]` prop
-- [ ] Renders category label + skill tags for each group
-- [ ] Tags styled as pill badges in `--color-surface` with `--color-accent` text
-- [ ] Layout visible and usable on mobile viewports
+- [x] Accepts `skillGroups: SkillGroup[]` prop
+- [x] Renders category label + skill tags for each group
+- [x] Tags styled as pill badges in `--color-surface` with `--color-accent` text
+- [x] Layout visible and usable on mobile viewports
 
 **Verification:**
 
-- [ ] `vp dev` at mobile viewport — all skill groups and tags render correctly
-- [ ] `vp check` passes
+- [x] `vp dev` at mobile viewport — all skill groups and tags render correctly
+- [x] `vp check` passes
 
 **Dependencies:** Tasks 3, 9
 
@@ -595,15 +595,15 @@ _All sections in this phase render real content from `portfolio.config.ts` with 
 
 **Acceptance criteria:**
 
-- [ ] All three sections render with real data from `portfolio.config.ts`
-- [ ] Contact section has no form
-- [ ] External links have `rel="noopener noreferrer"`
-- [ ] Education card is centered, minimal, no animations yet
+- [x] All three sections render with real data from `portfolio.config.ts`
+- [x] Contact section has no form
+- [x] External links have `rel="noopener noreferrer"`
+- [x] Education card is centered, minimal, no animations yet
 
 **Verification:**
 
-- [ ] `vp dev` — all three sections render, contact email link works
-- [ ] `vp check` passes
+- [x] `vp dev` — all three sections render, contact email link works
+- [x] `vp check` passes
 
 **Dependencies:** Tasks 4, 6, 15
 
@@ -619,13 +619,13 @@ _All sections in this phase render real content from `portfolio.config.ts` with 
 
 ### Checkpoint: Phase 3 — Static Site Complete
 
-- [ ] `vp build` — zero errors, zero type errors
-- [ ] `vp check` — exits 0
-- [ ] `vp dev` — all 9 sections render with real content
-- [ ] All content sourced from `portfolio.config.ts` — no hardcoded text in any component
-- [ ] Mobile layout renders correctly at 375px viewport
-- [ ] All external links have `rel="noopener noreferrer"`
-- [ ] Sticky project panels work (CSS only)
+- [x] `vp build` — zero errors, zero type errors
+- [x] `vp check` — exits 0
+- [x] `vp dev` — all 9 sections render with real content
+- [x] All content sourced from `portfolio.config.ts` — no hardcoded text in any component
+- [x] Mobile layout renders correctly at 375px viewport
+- [x] All external links have `rel="noopener noreferrer"`
+- [x] Sticky project panels work (CSS only)
 
 ---
 

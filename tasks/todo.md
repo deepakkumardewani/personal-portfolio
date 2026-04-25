@@ -36,6 +36,20 @@ Completed — details and checkboxes in `agent-docs/TASKS.md`.
 - [x] Task 8 — `SiteFooter` (config-driven links and copyright)
 - [x] Task 9 — `SectionLabel` UI
 
-## Phase 3+ (pending)
+## Phase 3: Sections — static markup (Tasks 10–16)
 
-See `agent-docs/TASKS.md` for static sections and later phases.
+Completed (see `agent-docs/TASKS.md` and Phase 3 checkpoint).
+
+- [x] Task 10 — `HeroSection` static layout
+- [x] Task 11 — `ProjectCard` UI
+- [x] Task 12 — `ProjectsSection` static layout
+- [x] Task 13 — `ExperienceSection` static layout
+- [x] Task 14 — `AwardSection` static layout
+- [x] Task 15 — `SkillOrbit` mobile tag list
+- [x] Task 16 — `SkillsSection`, `EducationSection`, `ContactSection`
+
+**Tests added:** `HeroSection.test.ts`, `ProjectCard.test.ts`, `phase3-sections.test.ts`
+
+## Phase 4+ (pending)
+
+See `agent-docs/TASKS.md` for skills orbital, animations, and later phases.

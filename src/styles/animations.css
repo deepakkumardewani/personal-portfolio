@@ -18,3 +18,17 @@
     opacity: 1;
   }
 }
+
+/* Hero scroll cue — vertical line pulse */
+@keyframes dkd-scroll-cue-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scaleY(0.85);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
