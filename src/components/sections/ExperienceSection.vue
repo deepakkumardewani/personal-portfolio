@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, useTemplateRef } from "vue";
 
+import { useExperienceAnimation } from "@/composables/useScrollAnimations";
 import { portfolio } from "@/data/portfolio.config";
 import type { Role } from "@/types/portfolio";
 import SectionLabel from "@/components/ui/SectionLabel.vue";
+
+const sectionRef = useTemplateRef<HTMLElement | null>("sectionRef");
+useExperienceAnimation(sectionRef);
 
 const company = computed(() => portfolio.experience[0]?.company ?? "");
 
@@ -13,7 +17,12 @@ const watermark = computed(() => company.value.toUpperCase().replaceAll(" ", "")
 </script>
 
 <template>
-  <section id="experience" class="experience" :aria-label="`Experience at ${company}`">
+  <section
+    id="experience"
+    ref="sectionRef"
+    class="experience"
+    :aria-label="`Experience at ${company}`"
+  >
     <p class="experience__watermark" aria-hidden="true">
       {{ watermark }}
     </p>

@@ -667,7 +667,7 @@ _All sections in this phase render real content from `portfolio.config.ts` with 
 
 ### Phase 5: GSAP Animations
 
-_All sections are already rendering correct static content. This phase layers scroll-driven animations on top using the composable stubs from Task 5._
+_All sections are already rendering correct static content. This phase layers scroll-driven animations on top using the composable stubs from Task 5._ **Complete.**
 
 ---
 
@@ -677,17 +677,17 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Acceptance criteria:**
 
-- Crosshair renders at mouse position smoothly (GSAP quickSetter for performance)
-- Magnetic pull: cursor snaps toward nearest interactive element on hover
-- Degrades on touch devices: component renders `display: none` when `hover: none` media matches
-- `prefers-reduced-motion`: skip GSAP quickSetter, use direct position update
-- `onUnmounted` cleanup removes event listeners
+- [x] Crosshair renders at mouse position smoothly (GSAP quickSetter for performance)
+- [x] Magnetic pull: cursor snaps toward nearest interactive element on hover
+- [x] Degrades on touch devices: component renders `display: none` when `hover: none` media matches
+- [x] `prefers-reduced-motion`: skip GSAP quickSetter, use direct position update
+- [x] `onUnmounted` cleanup removes event listeners
 
 **Verification:**
 
-- `vp dev` — custom cursor follows mouse, magnetic pull works on links/buttons
-- Mobile viewport — custom cursor not visible
-- `vp check` passes
+- [x] `vp dev` — custom cursor follows mouse, magnetic pull works on links/buttons
+- [x] Mobile viewport — custom cursor not visible
+- [x] `vp check` passes
 
 **Dependencies:** Tasks 2, 5, 6
 
@@ -706,17 +706,17 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Acceptance criteria:**
 
-- `useHeroAnimation(nameEl, taglineEl)` exported from `useScrollAnimations.ts`
-- GSAP `fromTo` on `.char` spans: `y: 80 → 0`, `opacity: 0 → 1`, duration 0.4s, stagger 0.02s, `ease: 'power4.out'`
-- Tagline fades in after name animation completes (`delay` or timeline)
-- `prefers-reduced-motion`: elements set to final state immediately, no animation
-- `onUnmounted` cleanup
+- [x] `useHeroAnimation(nameEl, taglineEl)` exported from `useScrollAnimations.ts`
+- [x] GSAP `fromTo` on `.char` spans: `y: 80 → 0`, `opacity: 0 → 1`, duration 0.4s, stagger 0.02s, `ease: 'power4.out'`
+- [x] Tagline fades in after name animation completes (`delay` or timeline)
+- [x] `prefers-reduced-motion`: elements set to final state immediately, no animation
+- [x] `onUnmounted` cleanup
 
 **Verification:**
 
-- `vp dev` — page load: name characters stagger in, tagline fades after
-- DevTools: `prefers-reduced-motion: reduce` — elements visible immediately
-- `vp check` passes
+- [x] `vp dev` — page load: name characters stagger in, tagline fades after
+- [x] DevTools: `prefers-reduced-motion: reduce` — elements visible immediately
+- [x] `vp check` passes
 
 **Dependencies:** Tasks 2, 5, 10
 
@@ -735,16 +735,16 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Acceptance criteria:**
 
-- `useProjectsAnimation(sectionEl)` exported from `useScrollAnimations.ts`
-- Per-panel: title slides up (`y: 40 → 0`, `opacity: 0 → 1`), stack tags fade in sequentially, screenshot scales `0.8 → 1`
-- ScrollTrigger trigger: each panel's scroll position
-- `prefers-reduced-motion`: elements at final state, no animation
-- `onUnmounted` cleanup
+- [x] `useProjectsAnimation(sectionEl)` exported from `useScrollAnimations.ts`
+- [x] Per-panel: title slides up (`y: 40 → 0`, `opacity: 0 → 1`), stack tags fade in sequentially, screenshot scales `0.8 → 1`
+- [x] ScrollTrigger trigger: each panel's scroll position
+- [x] `prefers-reduced-motion`: elements at final state, no animation
+- [x] `onUnmounted` cleanup
 
 **Verification:**
 
-- `vp dev` — scroll through projects: each panel animates in correctly
-- `vp check` passes
+- [x] `vp dev` — scroll through projects: each panel animates in correctly
+- [x] `vp check` passes
 
 **Dependencies:** Tasks 2, 5, 12
 
@@ -763,16 +763,16 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Acceptance criteria:**
 
-- `useExperienceAnimation(sectionEl)` exported from `useScrollAnimations.ts`
-- Role cards: `x: -20 → 0`, `opacity: 0 → 1` on scroll-enter
-- Highlights within each card fade in sequentially after card enters
-- `prefers-reduced-motion`: elements at final state
-- `onUnmounted` cleanup
+- [x] `useExperienceAnimation(sectionEl)` exported from `useScrollAnimations.ts`
+- [x] Role cards: `x: -20 → 0`, `opacity: 0 → 1` on scroll-enter
+- [x] Highlights within each card fade in sequentially after card enters
+- [x] `prefers-reduced-motion`: elements at final state
+- [x] `onUnmounted` cleanup
 
 **Verification:**
 
-- `vp dev` — scroll into experience: cards slide in, highlights sequence
-- `vp check` passes
+- [x] `vp dev` — scroll into experience: cards slide in, highlights sequence
+- [x] `vp check` passes
 
 **Dependencies:** Tasks 2, 5, 13
 
@@ -791,15 +791,15 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Acceptance criteria:**
 
-- `useAwardAnimation(sectionEl)` exported from `useScrollAnimations.ts`
-- Award title + event details: `filter: blur(20px) → blur(0)`, `opacity: 0 → 1`
-- `prefers-reduced-motion`: fade only (`blur` skipped), no motion
-- `onUnmounted` cleanup
+- [x] `useAwardAnimation(sectionEl)` exported from `useScrollAnimations.ts`
+- [x] Award title + event details: `filter: blur(20px) → blur(0)`, `opacity: 0 → 1`
+- [x] `prefers-reduced-motion`: fade only (`blur` skipped), no motion
+- [x] `onUnmounted` cleanup
 
 **Verification:**
 
-- `vp dev` — scroll into award: text assembles from blur
-- `vp check` passes
+- [x] `vp dev` — scroll into award: text assembles from blur
+- [x] `vp check` passes
 
 **Dependencies:** Tasks 2, 5, 14
 
@@ -818,16 +818,16 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Acceptance criteria:**
 
-- Header hides (`translateY(-100%)`) within 100px of scroll-down start
-- Header reappears (`translateY(0)`) immediately on scroll-up
-- Background blur triggers after scrolling > 50px from top
-- GSAP cleanup in `onUnmounted`
-- `prefers-reduced-motion`: header always visible, skip translate animation
+- [x] Header hides (`translateY(-100%)`) within 100px of scroll-down start
+- [x] Header reappears (`translateY(0)`) immediately on scroll-up
+- [x] Background blur triggers after scrolling > 50px from top
+- [x] GSAP cleanup in `onUnmounted`
+- [x] `prefers-reduced-motion`: header always visible, skip translate animation
 
 **Verification:**
 
-- `vp dev` — scroll down → header hides; scroll up → header reappears
-- `vp check` passes
+- [x] `vp dev` — scroll down → header hides; scroll up → header reappears
+- [x] `vp check` passes
 
 **Dependencies:** Tasks 2, 5, 7
 
@@ -842,12 +842,12 @@ _All sections are already rendering correct static content. This phase layers sc
 
 ### Checkpoint: Phase 5 — Animations Complete
 
-- `vp build` — zero errors
-- `vp check` — exits 0
-- All section animations trigger correctly on scroll
-- Custom cursor works on desktop, hidden on mobile
-- `prefers-reduced-motion: reduce` — all animations disabled / instant
-- GSAP not leaking: open DevTools → navigate away from dev → no ScrollTrigger errors
+- [x] `vp build` — zero errors
+- [x] `vp check` — exits 0
+- [x] All section animations trigger correctly on scroll
+- [x] Custom cursor works on desktop, hidden on mobile
+- [x] `prefers-reduced-motion: reduce` — all animations disabled / instant
+- [x] GSAP not leaking: open DevTools → navigate away from dev → no ScrollTrigger errors
 
 ---
 

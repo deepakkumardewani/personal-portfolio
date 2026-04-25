@@ -1,14 +1,20 @@
 <script setup lang="ts">
-import { portfolio } from "@/data/portfolio.config";
+import { useTemplateRef } from "vue";
+
+import { useProjectsAnimation } from "@/composables/useScrollAnimations";
 import ProjectCard from "@/components/ui/ProjectCard.vue";
 import SectionLabel from "@/components/ui/SectionLabel.vue";
+import { portfolio } from "@/data/portfolio.config";
 
 const projects = portfolio.projects;
 const total = projects.length;
+
+const sectionRef = useTemplateRef<HTMLElement | null>("sectionRef");
+useProjectsAnimation(sectionRef);
 </script>
 
 <template>
-  <section id="work" class="projects" aria-labelledby="work-heading">
+  <section id="work" ref="sectionRef" class="projects" aria-labelledby="work-heading">
     <h2 id="work-heading" class="sr-only">Selected work</h2>
     <div class="projects__stack" :style="{ height: `calc(${total} * 100vh)` }">
       <div

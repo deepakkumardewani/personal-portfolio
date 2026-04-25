@@ -1,16 +1,21 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, useTemplateRef } from "vue";
 
+import { useHeroAnimation } from "@/composables/useScrollAnimations";
 import { portfolio } from "@/data/portfolio.config";
 
 const nameChars = computed(() => portfolio.name.toUpperCase().split(""));
+
+const nameRef = useTemplateRef<HTMLHeadingElement | null>("nameRef");
+const taglineRef = useTemplateRef<HTMLElement | null>("taglineRef");
+useHeroAnimation(nameRef, taglineRef);
 </script>
 
 <template>
   <section id="hero" class="hero" aria-labelledby="hero-name">
     <div class="hero__glow" aria-hidden="true" />
     <div class="hero__inner">
-      <h1 id="hero-name" class="hero__name">
+      <h1 id="hero-name" ref="nameRef" class="hero__name">
         <span
           v-for="(ch, i) in nameChars"
           :key="`${ch}-${i}`"
@@ -18,7 +23,7 @@ const nameChars = computed(() => portfolio.name.toUpperCase().split(""));
           >{{ ch === " " ? "\u00a0" : ch }}</span
         >
       </h1>
-      <p class="hero__tagline">
+      <p ref="taglineRef" class="hero__tagline">
         {{ portfolio.tagline }}
       </p>
     </div>

@@ -57,6 +57,19 @@ Completed (see `agent-docs/TASKS.md` and Phase 3 checkpoint).
 
 **Dependencies:** Tasks 2, 5, 15 (complete in `agent-docs/TASKS.md`)
 
-## Phase 5+ (pending)
+## Phase 5: GSAP Animations (Tasks 18–23) — complete
 
-See `agent-docs/TASKS.md` for scroll animations, tests, and later phases.
+Details and checkboxes in `agent-docs/TASKS.md`.
+
+- [x] Task 18 — `useCustomCursor` + `CustomCursor`
+- [x] Task 19 — Hero stagger + tagline
+- [x] Task 20 — Projects ScrollTrigger panels
+- [x] Task 21 — Experience timeline
+- [x] Task 22 — Award blur-assemble
+- [x] Task 23 — Header scroll hide/show
+
+**Tests added:** `useScrollAnimations.phase5.test.ts`, `useCustomCursor.test.ts`
+
+## Phase 6+ (next)
+
+See `agent-docs/TASKS.md` for config tests, polish, deploy.

@@ -1,15 +1,19 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, useTemplateRef } from "vue";
 
+import { useAwardAnimation } from "@/composables/useScrollAnimations";
 import { portfolio } from "@/data/portfolio.config";
 import SectionLabel from "@/components/ui/SectionLabel.vue";
+
+const sectionRef = useTemplateRef<HTMLElement | null>("sectionRef");
+useAwardAnimation(sectionRef);
 
 const award = portfolio.award;
 const backgroundText = computed(() => award.title.toUpperCase());
 </script>
 
 <template>
-  <section id="award" class="award" aria-label="Awards and recognition">
+  <section id="award" ref="sectionRef" class="award" aria-label="Awards and recognition">
     <p class="award__bg-text" aria-hidden="true">
       {{ backgroundText }}
     </p>

@@ -16,12 +16,11 @@ import {
   type Ref,
 } from "vue";
 
+import { useSiteHeaderScrollAnimation } from "@/composables/useScrollAnimations";
 import { ANCHOR_IDS, MAIN_NAV_ANCHOR_KEYS, type MainNavAnchorKey } from "@/constants/navigation";
-import { ScrollTrigger, gsap } from "@/utils/gsap";
 
 const MOBILE_MAX_PX = 767;
 const SCROLL_BLUR_PX = 50;
-const HEADER_HIDE_MIN_SCROLL = 100;
 
 const NAV_LINKS: ReadonlyArray<{
   id: "work" | "experience" | "skills" | "contact";
@@ -59,27 +58,13 @@ const { y: scrollY } = useWindowScroll();
 
 const isScrolled = computed(() => scrollY.value > SCROLL_BLUR_PX);
 
-let headerScrollTrigger: ReturnType<typeof ScrollTrigger.create> | null = null;
-let lastScrollY = 0;
+useSiteHeaderScrollAnimation(headerRef);
 
 function onMediaQuery() {
   isMobile.value = window.innerWidth <= MOBILE_MAX_PX;
   if (!isMobile.value) {
     isDrawerOpen.value = false;
   }
-}
-
-function setHeaderVisibility(visible: boolean) {
-  const el = headerRef.value;
-  if (!el) {
-    return;
-  }
-  gsap.to(el, {
-    yPercent: visible ? 0 : -100,
-    duration: 0.28,
-    ease: "power2.out",
-    overwrite: "auto",
-  });
 }
 
 const stopResizeListener = useEventListener("resize", onMediaQuery, { passive: true });
@@ -113,37 +98,10 @@ onMounted(() => {
   }
 
   onMediaQuery();
-  lastScrollY = window.scrollY;
-
-  if (headerRef.value) {
-    headerScrollTrigger = ScrollTrigger.create({
-      start: 0,
-      end: "max",
-      onUpdate: () => {
-        const y = window.scrollY;
-        if (y < HEADER_HIDE_MIN_SCROLL) {
-          setHeaderVisibility(true);
-          lastScrollY = y;
-          return;
-        }
-        if (y > lastScrollY + 4) {
-          setHeaderVisibility(false);
-        } else if (y < lastScrollY - 4) {
-          setHeaderVisibility(true);
-        }
-        lastScrollY = y;
-      },
-    });
-  }
 });
 
 onBeforeUnmount(() => {
   stopResizeListener();
-  if (headerScrollTrigger) {
-    headerScrollTrigger.kill();
-    headerScrollTrigger = null;
-  }
-  gsap.killTweensOf(headerRef.value);
 });
 
 const spyOptions = { rootMargin: "-38% 0px -38% 0px", threshold: 0 } as const;
