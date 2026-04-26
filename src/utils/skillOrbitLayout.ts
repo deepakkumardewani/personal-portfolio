@@ -3,7 +3,7 @@
  * Satellites are placed on a circle; index 0 starts at 12 o'clock.
  */
 
-export const DEFAULT_ORBIT_RADIUS_PX = 148;
+export const DEFAULT_ORBIT_RADIUS_PX = 220;
 
 export function satellitePosition(
   index: number,

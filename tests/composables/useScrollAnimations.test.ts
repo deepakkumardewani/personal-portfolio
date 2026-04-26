@@ -195,8 +195,9 @@ describe("useScrollAnimations cleanup on unmount", () => {
     expect(gsapMocks.scrollTriggerCreateKill).toHaveBeenCalled();
   });
 
-  it("useSkillOrbitTilt: exposes stageStyle from orbit ref", async () => {
+  it("useSkillOrbitTilt: mounts without error and exposes prefersReducedMotion", async () => {
     const orbit = document.createElement("div");
+    const tilt = document.createElement("div");
     Object.defineProperty(orbit, "clientWidth", {
       value: 200,
       configurable: true,
@@ -205,13 +206,14 @@ describe("useScrollAnimations cleanup on unmount", () => {
       value: 200,
       configurable: true,
     });
-    document.body.append(orbit);
+    document.body.append(orbit, tilt);
 
     const C = defineComponent({
       setup() {
         const orbitRef = ref<HTMLElement | null>(orbit);
-        const { stageStyle } = useSkillOrbitTilt(orbitRef);
-        return () => h("div", { class: "t" }, String(stageStyle.value.transform ?? ""));
+        const tiltRef = ref<HTMLElement | null>(tilt);
+        const { prefersReducedMotion } = useSkillOrbitTilt(orbitRef, tiltRef);
+        return () => h("div", { class: "t" }, String(prefersReducedMotion.value));
       },
     });
     const w = mount(C);

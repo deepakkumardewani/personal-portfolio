@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 
-import { useSkillOrbitTagBurst, useSkillOrbitTilt } from "@/composables/useScrollAnimations";
+import {
+  useSkillOrbitEntrance,
+  useSkillOrbitTagBurst,
+  useSkillOrbitTilt,
+} from "@/composables/useScrollAnimations";
 import { DEFAULT_ORBIT_RADIUS_PX, satellitePosition } from "@/utils/skillOrbitLayout";
 import type { SkillGroup } from "@/types/portfolio";
 
@@ -9,14 +13,14 @@ const props = defineProps<{
   skillGroups: SkillGroup[];
 }>();
 
-const CENTER_NODE_LABEL = "8+ years";
-
 const orbitRef = ref<HTMLElement | null>(null);
+const tiltRef = ref<HTMLElement | null>(null);
 const satRefs = ref<(HTMLElement | null)[]>([]);
 const tagRefs = ref<(HTMLElement | null)[]>([]);
 
-const { stageStyle, prefersReducedMotion } = useSkillOrbitTilt(orbitRef);
+const { prefersReducedMotion } = useSkillOrbitTilt(orbitRef, tiltRef);
 useSkillOrbitTagBurst(satRefs, tagRefs, prefersReducedMotion);
+useSkillOrbitEntrance(orbitRef);
 
 const total = computed(() => props.skillGroups.length);
 
@@ -34,25 +38,17 @@ const satelliteStyles = computed(() => {
 });
 
 function setSatRef(el: unknown, i: number) {
-  if (el instanceof HTMLElement) {
-    satRefs.value[i] = el;
-  } else {
-    satRefs.value[i] = null;
-  }
+  satRefs.value[i] = el instanceof HTMLElement ? el : null;
 }
 
 function setTagRef(el: unknown, i: number) {
-  if (el instanceof HTMLElement) {
-    tagRefs.value[i] = el;
-  } else {
-    tagRefs.value[i] = null;
-  }
+  tagRefs.value[i] = el instanceof HTMLElement ? el : null;
 }
 </script>
 
 <template>
   <div class="skill-orbit">
-    <!-- Task 15: touch / coarse pointers — same stacked list -->
+    <!-- Mobile / touch: stacked list -->
     <div class="skill-orbit__list" data-skills="list">
       <div
         v-for="(group, i) in skillGroups"
@@ -70,17 +66,22 @@ function setTagRef(el: unknown, i: number) {
       </div>
     </div>
 
-    <!-- Task 17: desktop orbital -->
+    <!-- Desktop orbital -->
     <div
       ref="orbitRef"
       class="skill-orbit__orbital"
-      :aria-label="'Skill categories in orbit, center: ' + CENTER_NODE_LABEL"
+      :aria-label="'Skill categories in orbit, center: 8+ years'"
     >
-      <div class="skill-orbit__tilt" :style="stageStyle">
+      <div ref="tiltRef" class="skill-orbit__tilt">
         <div class="skill-orbit__pivot">
+          <!-- Orbit ring -->
+          <div class="skill-orbit__ring" aria-hidden="true" />
+
           <div class="skill-orbit__center" aria-hidden="true">
-            {{ CENTER_NODE_LABEL }}
+            <span class="skill-orbit__center-years">8+</span>
+            <span class="skill-orbit__center-label">years</span>
           </div>
+
           <div
             v-for="(group, i) in skillGroups"
             :key="`orb-${group.label}-${i}`"
@@ -88,7 +89,7 @@ function setTagRef(el: unknown, i: number) {
             class="skill-orbit__sat"
             :style="satelliteStyles[i]"
             tabindex="0"
-            :aria-label="`${group.label} skills. Hover or focus to expand tags.`"
+            :aria-label="`${group.label} skills`"
           >
             <p class="skill-orbit__sat-title">
               {{ group.label }}
@@ -115,40 +116,37 @@ function setTagRef(el: unknown, i: number) {
 
 <style scoped>
 .skill-orbit {
-  --skill-orbit-r: 148px;
+  --skill-orbit-r: 220px;
   --skill-perspective: 1000px;
   position: relative;
 }
 
-/* Mobile / touch: list only (Task 15) */
+/* ─── Mobile list ──────────────────────────────────── */
 .skill-orbit__list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 0;
 }
 
-.skill-orbit__orbital {
-  display: none;
+.skill-orbit__group {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--color-border);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .skill-orbit__list {
-    display: none;
-  }
-
-  .skill-orbit__orbital {
-    display: block;
-  }
+.skill-orbit__group:first-child {
+  border-top: 1px solid var(--color-border);
 }
 
 .skill-orbit__label {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 500;
+  font-size: 0.65rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-muted);
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+  margin-bottom: 0.75rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--color-accent);
 }
 
 .skill-orbit__tags {
@@ -163,23 +161,34 @@ function setTagRef(el: unknown, i: number) {
 .skill-orbit__tag {
   display: inline-flex;
   align-items: center;
-  padding: 0.3rem 0.6rem;
-  font-size: 0.75rem;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.72rem;
   line-height: 1.2;
-  color: var(--color-accent);
+  color: var(--color-text);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 999px;
   white-space: nowrap;
 }
 
-/* Orbital (desktop) */
+/* ─── Desktop orbital ──────────────────────────────── */
 .skill-orbit__orbital {
-  min-height: min(70vh, 32rem);
-  position: relative;
-  perspective: var(--skill-perspective);
-  z-index: 0;
-  outline: none;
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .skill-orbit__list {
+    display: none;
+  }
+
+  .skill-orbit__orbital {
+    display: block;
+    min-height: min(70vh, 32rem);
+    position: relative;
+    perspective: var(--skill-perspective);
+    z-index: 0;
+    outline: none;
+  }
 }
 
 .skill-orbit__tilt {
@@ -196,59 +205,104 @@ function setTagRef(el: unknown, i: number) {
 
 .skill-orbit__pivot {
   position: relative;
-  width: min(calc(2 * (var(--skill-orbit-r) + 5rem)), 100%);
-  max-width: 42rem;
+  width: min(calc(2 * (var(--skill-orbit-r) + 6rem)), 100%);
+  max-width: 56rem;
   aspect-ratio: 1;
   margin: 0 auto;
   transform-style: preserve-3d;
 }
 
+/* Orbit path ring */
+.skill-orbit__ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(2 * var(--skill-orbit-r) + 10.5rem);
+  height: calc(2 * var(--skill-orbit-r) + 10.5rem);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px dashed #3a3a3a;
+  pointer-events: none;
+  opacity: 1;
+}
+
+/* Center node */
 .skill-orbit__center {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-  font-family: var(--font-display);
-  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  line-height: 1;
-  color: var(--color-text);
-  text-align: center;
-  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
   pointer-events: none;
-  white-space: nowrap;
+  text-align: center;
 }
 
+.skill-orbit__center-years {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--color-text);
+  text-transform: uppercase;
+}
+
+.skill-orbit__center-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-top: 0.2rem;
+}
+
+/* Satellites */
 .skill-orbit__sat {
   position: absolute;
   z-index: 1;
   width: min(10rem, 32vw);
-  min-height: 2.5rem;
   text-align: center;
   transform-style: preserve-3d;
   cursor: default;
   border-radius: 0.5rem;
-  padding: 0.35rem 0.25rem 0.5rem;
+  padding: 0.5rem 0.4rem 0.6rem;
   margin: 0;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  transition:
+    opacity 0.25s ease,
+    border-color 0.2s ease;
+}
+
+/* Spotlight: dim all siblings when any satellite is hovered/focused */
+.skill-orbit__pivot:has(.skill-orbit__sat:hover) .skill-orbit__sat:not(:hover),
+.skill-orbit__pivot:has(.skill-orbit__sat:focus-visible) .skill-orbit__sat:not(:focus-visible) {
+  opacity: 0.2;
 }
 
 .skill-orbit__sat:hover,
 .skill-orbit__sat:focus-visible {
   z-index: 3;
-  outline: 1px solid var(--color-border);
-  outline-offset: 2px;
+  border-color: color-mix(in srgb, var(--color-accent) 60%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--color-accent) 20%, transparent),
+    0 4px 20px color-mix(in srgb, var(--color-accent) 12%, transparent);
+  outline: none;
 }
 
 .skill-orbit__sat-title {
-  margin: 0 0 0.25rem;
+  margin: 0 0 0.4rem;
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--color-muted);
+  letter-spacing: 0.14em;
+  color: var(--color-accent);
 }
 
 .skill-orbit__sat-burst {
@@ -257,15 +311,22 @@ function setTagRef(el: unknown, i: number) {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem 0.4rem;
+  gap: 0.3rem;
   justify-content: center;
   align-items: center;
-  min-height: 0;
-  will-change: transform;
 }
 
 .skill-orbit__tag--orbital {
-  font-size: 0.65rem;
-  padding: 0.25rem 0.5rem;
+  font-size: 0.6rem;
+  padding: 0.2rem 0.45rem;
+  color: var(--color-muted);
+  background: transparent;
+  border-color: color-mix(in srgb, var(--color-border) 80%, transparent);
+}
+
+.skill-orbit__sat:hover .skill-orbit__tag--orbital,
+.skill-orbit__sat:focus-visible .skill-orbit__tag--orbital {
+  color: var(--color-text);
+  border-color: var(--color-border);
 }
 </style>

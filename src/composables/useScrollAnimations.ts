@@ -1,4 +1,4 @@
-import { useMouseInElement, usePreferredReducedMotion } from "@vueuse/core";
+import { usePreferredReducedMotion } from "@vueuse/core";
 import { computed, nextTick, onUnmounted, type Ref, watch } from "vue";
 
 import { gsap, ScrollTrigger } from "@/utils/gsap";
@@ -13,8 +13,6 @@ const SCROLL_DIR_EPSILON = 4;
 function isPreferredReducedMotionQuery(value: unknown): boolean {
   return value === true || value === "reduce";
 }
-const skillOrbitBurstTeardown: Array<() => void> = [];
-
 function registerScrollAnimationCleanup() {
   onUnmounted(() => {
     ScrollTrigger.getAll().forEach((t) => t.kill());
@@ -22,113 +20,166 @@ function registerScrollAnimationCleanup() {
 }
 
 /**
- * Mobile parallax for the skills orbital stage (desktop). ±5° toward cursor; disabled when
- * `prefers-reduced-motion: reduce` or pointer leaves the orbit.
+ * Mouse-driven 3D tilt for the skills orbital stage. ±5° toward cursor.
+ *
+ * Uses direct DOM event listeners + GSAP quickTo so that:
+ * 1. Updates are RAF-batched, never interrupting CSS :hover hit-testing (no flicker).
+ * 2. event.target lets us freeze the tilt while the cursor is inside a satellite card.
+ *
+ * quickTo is created lazily on first mousemove so it is guaranteed to see the mounted
+ * tilt element — avoids the watch-ordering race where [orbitRef, tiltRef] might not both
+ * be populated in the same flush.
  */
-export function useSkillOrbitTilt(orbitRef: Ref<HTMLElement | null>) {
+export function useSkillOrbitTilt(
+  orbitRef: Ref<HTMLElement | null>,
+  tiltRef: Ref<HTMLElement | null>,
+) {
   const prefersReducedMotion = usePreferredReducedMotion();
-  const { elementX, elementY, elementWidth, elementHeight, isOutside } = useMouseInElement(
-    orbitRef,
-    { handleOutside: true },
-  );
-
-  const stageStyle = computed(() => {
-    if (isPreferredReducedMotionQuery(prefersReducedMotion.value)) {
-      return { transform: "rotateX(0deg) rotateY(0deg)" };
-    }
-    const w = elementWidth.value;
-    const h = elementHeight.value;
-    if (w <= 0 || h <= 0 || isOutside.value) {
-      return { transform: "rotateX(0deg) rotateY(0deg)" };
-    }
-    const nx = (elementX.value / w) * 2 - 1;
-    const ny = (elementY.value / h) * 2 - 1;
-    const rotX = -ny * SKILL_ORBIT_TILT_DEG;
-    const rotY = nx * SKILL_ORBIT_TILT_DEG;
-    return {
-      transform: `rotateX(${rotX}deg) rotateY(${rotY}deg)`,
-    };
-  });
 
   const reducedMotionBoolean = computed(() =>
     isPreferredReducedMotionQuery(prefersReducedMotion.value),
   );
 
-  return { stageStyle, prefersReducedMotion: reducedMotionBoolean };
-}
+  type QuickToFunc = (value: number) => void;
+  let quickRotX: QuickToFunc | null = null;
+  let quickRotY: QuickToFunc | null = null;
+  let cachedTiltEl: HTMLElement | null = null;
 
-function tearDownSkillOrbitBursts() {
-  while (skillOrbitBurstTeardown.length > 0) {
-    const run = skillOrbitBurstTeardown.pop();
-    run?.();
-  }
-}
-
-/**
- * GSAP scale burst for skill tags on satellite hover/focus. Skipped when reduced motion.
- */
-export function useSkillOrbitTagBurst(
-  satRefs: Readonly<Ref<(HTMLElement | null)[]>>,
-  tagRefs: Readonly<Ref<(HTMLElement | null)[]>>,
-  prefersReducedMotion: Readonly<Ref<boolean>>,
-) {
-  const setup = () => {
-    tearDownSkillOrbitBursts();
-    const sats = satRefs.value;
-    const tags = tagRefs.value;
-    const n = Math.min(sats.length, tags.length);
-    const reduced = prefersReducedMotion.value;
-    for (let i = 0; i < n; i++) {
-      const sat = sats[i];
-      const tagContainer = tags[i];
-      if (!sat || !tagContainer) {
-        continue;
-      }
-      if (reduced) {
-        gsap.set(tagContainer, { scale: 1, clearProps: "transform" });
-        continue;
-      }
-      gsap.set(tagContainer, { scale: 0, transformOrigin: "50% 50%" });
-      const onEnter = () => {
-        gsap.to(tagContainer, {
-          scale: 1,
-          duration: 0.4,
-          ease: "back.out(1.3)",
-        });
-      };
-      const onLeave = () => {
-        gsap.to(tagContainer, { scale: 0, duration: 0.25, ease: "power2.in" });
-      };
-      const onFocusOut = (e: FocusEvent) => {
-        if (!sat.contains(e.relatedTarget as Node | null)) {
-          onLeave();
-        }
-      };
-      sat.addEventListener("mouseenter", onEnter);
-      sat.addEventListener("mouseleave", onLeave);
-      sat.addEventListener("focusin", onEnter);
-      sat.addEventListener("focusout", onFocusOut);
-      skillOrbitBurstTeardown.push(() => {
-        sat.removeEventListener("mouseenter", onEnter);
-        sat.removeEventListener("mouseleave", onLeave);
-        sat.removeEventListener("focusin", onEnter);
-        sat.removeEventListener("focusout", onFocusOut);
-        gsap.killTweensOf(tagContainer);
-      });
+  function getQuickTo(): { x: QuickToFunc; y: QuickToFunc } | null {
+    const tilt = tiltRef.value;
+    if (!tilt) return null;
+    if (tilt !== cachedTiltEl) {
+      cachedTiltEl = tilt;
+      quickRotX = gsap.quickTo(tilt, "rotateX", {
+        duration: 0.3,
+        ease: "power2.out",
+      }) as QuickToFunc;
+      quickRotY = gsap.quickTo(tilt, "rotateY", {
+        duration: 0.3,
+        ease: "power2.out",
+      }) as QuickToFunc;
     }
-  };
+    return { x: quickRotX!, y: quickRotY! };
+  }
 
+  function resetTilt() {
+    const fns = getQuickTo();
+    if (!fns) return;
+    fns.x(0);
+    fns.y(0);
+  }
+
+  function onMouseMove(e: MouseEvent) {
+    if (reducedMotionBoolean.value) return;
+    const fns = getQuickTo();
+    if (!fns) return;
+
+    // Freeze tilt when cursor is on or inside a satellite card to prevent hover flicker.
+    if ((e.target as Element | null)?.closest(".skill-orbit__sat")) {
+      fns.x(0);
+      fns.y(0);
+      return;
+    }
+
+    const orbit = orbitRef.value;
+    if (!orbit) return;
+    const { width, height, left, top } = orbit.getBoundingClientRect();
+    if (width <= 0 || height <= 0) return;
+
+    const nx = ((e.clientX - left) / width) * 2 - 1;
+    const ny = ((e.clientY - top) / height) * 2 - 1;
+    fns.x(-ny * SKILL_ORBIT_TILT_DEG);
+    fns.y(nx * SKILL_ORBIT_TILT_DEG);
+  }
+
+  // Only orbitRef needs watching — listeners attach/detach when the container mounts.
+  // tiltRef is read lazily inside onMouseMove so there is no ordering dependency.
   watch(
-    [() => satRefs.value, () => tagRefs.value, () => prefersReducedMotion.value],
-    () => {
-      setup();
+    orbitRef,
+    (orbit, prevOrbit) => {
+      if (prevOrbit) {
+        prevOrbit.removeEventListener("mousemove", onMouseMove);
+        prevOrbit.removeEventListener("mouseleave", resetTilt);
+      }
+      if (!orbit) return;
+      orbit.addEventListener("mousemove", onMouseMove);
+      orbit.addEventListener("mouseleave", resetTilt);
     },
-    { flush: "post", deep: true, immediate: true },
+    { immediate: true },
   );
 
   onUnmounted(() => {
-    tearDownSkillOrbitBursts();
+    const orbit = orbitRef.value;
+    if (orbit) {
+      orbit.removeEventListener("mousemove", onMouseMove);
+      orbit.removeEventListener("mouseleave", resetTilt);
+    }
+    quickRotX = null;
+    quickRotY = null;
+    cachedTiltEl = null;
   });
+
+  return { prefersReducedMotion: reducedMotionBoolean };
+}
+
+/**
+ * Spotlight effect is handled entirely via CSS :has() — no JS needed.
+ * Kept for API compatibility with SkillOrbit.vue.
+ */
+export function useSkillOrbitTagBurst(
+  _satRefs: Readonly<Ref<(HTMLElement | null)[]>>,
+  _tagRefs: Readonly<Ref<(HTMLElement | null)[]>>,
+  _prefersReducedMotion: Readonly<Ref<boolean>>,
+) {}
+
+/**
+ * Fade + scale reveal for the orbital container on scroll-in.
+ */
+export function useSkillOrbitEntrance(orbitRef: Readonly<Ref<HTMLElement | null>>) {
+  const prefersReducedMotion = usePreferredReducedMotion();
+  let ctx: gsap.Context | null = null;
+
+  function run() {
+    ctx?.revert();
+    const el = orbitRef.value;
+    if (!el) return;
+    const reduced = isPreferredReducedMotionQuery(prefersReducedMotion.value);
+
+    ctx = gsap.context(() => {
+      if (reduced) {
+        gsap.set(el, { opacity: 1, scale: 1 });
+        return;
+      }
+      gsap.fromTo(
+        el,
+        { opacity: 0, scale: 0.94 },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 0.75,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 78%",
+            toggleActions: "play none none none",
+          },
+        },
+      );
+    }, el);
+  }
+
+  onUnmounted(() => {
+    ctx?.revert();
+    ctx = null;
+  });
+
+  watch(
+    () => [orbitRef.value, prefersReducedMotion.value] as const,
+    () => {
+      void nextTick(run);
+    },
+    { flush: "post", immediate: true },
+  );
 }
 
 /**
