@@ -3,7 +3,7 @@ import { computed, nextTick, onMounted, onUnmounted, type Ref, ref, watch } from
 
 import { gsap } from "@/utils/gsap";
 
-const LERP = 0.2;
+const LERP = 0.35;
 const MAGNET_STRENGTH = 0.4;
 const INTERACTIVE_SELECTORS = "a[href], button, [data-cursor-magnetic]";
 

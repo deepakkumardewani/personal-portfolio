@@ -17,8 +17,8 @@ import SkillsSection from "@/components/sections/SkillsSection.vue";
     <SiteHeader />
     <main class="app-main">
       <HeroSection />
-      <ProjectsSection />
       <ExperienceSection />
+      <ProjectsSection />
       <AwardSection />
       <SkillsSection />
       <EducationSection />
