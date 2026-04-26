@@ -1001,7 +1001,7 @@ _All sections are already rendering correct static content. This phase layers sc
 
 **Verification:**
 
-- [x] Lighthouse Accessibility score = 100 *(run in Chrome DevTools on production build)*
+- [x] Lighthouse Accessibility score = 100 _(run in Chrome DevTools on production build)_
 - [x] `vp check` passes
 
 **Dependencies:** Tasks 7–23
