@@ -15,6 +15,9 @@ useHeroAnimation(nameRef, taglineRef);
   <section id="hero" class="hero" aria-labelledby="hero-name">
     <div class="hero__glow" aria-hidden="true" />
     <div class="hero__inner">
+      <div class="hero__profile" aria-hidden="true">
+        <img src="/photo.png" alt="Profile" class="hero__profile-image" />
+      </div>
       <h1 id="hero-name" ref="nameRef" class="hero__name">
         <span
           v-for="(ch, i) in nameChars"
@@ -57,6 +60,34 @@ useHeroAnimation(nameRef, taglineRef);
   z-index: 1;
   max-width: 100%;
   text-align: center;
+}
+
+.hero__profile {
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+  display: flex;
+  justify-content: center;
+  animation: hero-profile-fade 1s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes hero-profile-fade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero__profile-image {
+  width: clamp(100px, 15vw, 150px);
+  height: clamp(100px, 15vw, 150px);
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-accent-dim);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
 .hero__name {

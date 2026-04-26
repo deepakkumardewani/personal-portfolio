@@ -74,7 +74,7 @@ const backgroundText = computed(() => award.title.toUpperCase());
 }
 
 .award__label {
-  text-align: center;
+  text-align: left;
   margin-bottom: 1.5rem;
 }
 

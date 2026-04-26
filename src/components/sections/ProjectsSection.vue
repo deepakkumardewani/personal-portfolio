@@ -25,7 +25,7 @@ useProjectsAnimation(sectionRef);
       >
         <div class="projects__panel-inner">
           <div v-if="i === 0" class="projects__label">
-            <SectionLabel index="01" label="WORK" />
+            <SectionLabel index="02" label="WORK" />
           </div>
           <ProjectCard :index="i" :project="project" :total="total" />
         </div>

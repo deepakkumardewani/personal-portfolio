@@ -28,7 +28,7 @@ const watermark = computed(() => company.value.toUpperCase().replaceAll(" ", "")
     </p>
     <div class="experience__inner">
       <div class="experience__label">
-        <SectionLabel index="02" label="EXPERIENCE" />
+        <SectionLabel index="01" label="EXPERIENCE" />
       </div>
       <div class="experience__body">
         <h2 class="sr-only">Professional experience</h2>
