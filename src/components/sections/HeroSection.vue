@@ -4,7 +4,7 @@ import { computed, useTemplateRef } from "vue";
 import { useHeroAnimation } from "@/composables/useScrollAnimations";
 import { portfolio } from "@/data/portfolio.config";
 
-const nameChars = computed(() => portfolio.name.toUpperCase().split(""));
+const nameWords = computed(() => portfolio.name.toUpperCase().split(" "));
 
 const nameRef = useTemplateRef<HTMLHeadingElement | null>("nameRef");
 const taglineRef = useTemplateRef<HTMLElement | null>("taglineRef");
@@ -19,12 +19,12 @@ useHeroAnimation(nameRef, taglineRef);
         <img src="/photo.png" alt="Profile" class="hero__profile-image" />
       </div>
       <h1 id="hero-name" ref="nameRef" class="hero__name">
-        <span
-          v-for="(ch, i) in nameChars"
-          :key="`${ch}-${i}`"
-          :class="['char', { 'char--space': ch === ' ' }]"
-          >{{ ch === " " ? "\u00a0" : ch }}</span
-        >
+        <span v-for="(word, wIndex) in nameWords" :key="`word-${wIndex}`" class="word">
+          <span v-for="(ch, cIndex) in word.split('')" :key="`${wIndex}-${cIndex}`" class="char">{{
+            ch
+          }}</span
+          ><span v-if="wIndex < nameWords.length - 1" class="char char--space">&nbsp;</span>
+        </span>
       </h1>
       <p ref="taglineRef" class="hero__tagline">
         {{ portfolio.tagline }}
@@ -103,6 +103,11 @@ useHeroAnimation(nameRef, taglineRef);
 :deep(.char) {
   display: inline-block;
   transform-origin: 50% 80%;
+}
+
+:deep(.word) {
+  display: inline-block;
+  white-space: nowrap;
 }
 
 :deep(.char--space) {

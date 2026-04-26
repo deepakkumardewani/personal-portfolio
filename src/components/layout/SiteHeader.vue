@@ -174,34 +174,34 @@ function isNavItemActive(id: (typeof NAV_LINKS)[number]["id"]) {
       </button>
     </div>
 
-    <div
-      v-show="isMobile"
-      id="site-header-drawer"
-      ref="drawerRef"
-      class="site-header__drawer"
-      :data-open="isDrawerOpen"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Mobile navigation"
-    >
-      <nav
-        v-if="isDrawerOpen"
-        class="site-header__nav site-header__nav--drawer"
-        aria-label="Primary mobile"
-      >
-        <a
-          v-for="item in NAV_LINKS"
-          :key="`drawer-${item.id}`"
-          :href="item.href"
-          class="site-header__link site-header__link--stacked"
-          :class="{ 'site-header__link--active': isNavItemActive(item.id) }"
-          :aria-current="isNavItemActive(item.id) ? 'page' : undefined"
-          @click="closeDrawer"
+    <Teleport to="body">
+      <Transition name="drawer">
+        <div
+          v-show="isMobile && isDrawerOpen"
+          id="site-header-drawer"
+          ref="drawerRef"
+          class="site-header__drawer"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile navigation"
         >
-          {{ item.label }}
-        </a>
-      </nav>
-    </div>
+          <nav class="site-header__nav site-header__nav--drawer" aria-label="Primary mobile">
+            <a
+              v-for="(item, index) in NAV_LINKS"
+              :key="`drawer-${item.id}`"
+              :href="item.href"
+              class="site-header__link site-header__link--stacked"
+              :class="{ 'site-header__link--active': isNavItemActive(item.id) }"
+              :aria-current="isNavItemActive(item.id) ? 'page' : undefined"
+              :style="{ '--stagger': index }"
+              @click="closeDrawer"
+            >
+              {{ item.label }}
+            </a>
+          </nav>
+        </div>
+      </Transition>
+    </Teleport>
   </header>
 </template>
 
@@ -311,6 +311,22 @@ function isNavItemActive(id: (typeof NAV_LINKS)[number]["id"]) {
   height: 2px;
   background: currentColor;
   border-radius: 1px;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+  transform-origin: center;
+}
+
+.site-header__hamburger[aria-expanded="true"] .site-header__hamburger-line:nth-child(2) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.site-header__hamburger[aria-expanded="true"] .site-header__hamburger-line:nth-child(3) {
+  opacity: 0;
+}
+
+.site-header__hamburger[aria-expanded="true"] .site-header__hamburger-line:nth-child(4) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 .site-header__hamburger:focus-visible {
@@ -321,20 +337,35 @@ function isNavItemActive(id: (typeof NAV_LINKS)[number]["id"]) {
 .site-header__drawer {
   position: fixed;
   inset: 0;
-  z-index: 1;
+  z-index: 99;
   padding: 5rem 1.5rem 2rem;
   background-color: var(--color-bg);
   overflow-y: auto;
 }
 
-.site-header__drawer[data-open="false"] {
-  visibility: hidden;
-  pointer-events: none;
+.drawer-enter-active,
+.drawer-leave-active {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
-.site-header__drawer[data-open="true"] {
-  visibility: visible;
-  pointer-events: auto;
+.drawer-enter-from,
+.drawer-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.drawer-enter-active .site-header__link--stacked {
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  transition-delay: calc(0.1s + var(--stagger) * 0.05s);
+}
+
+.drawer-enter-from .site-header__link--stacked {
+  opacity: 0;
+  transform: translateY(10px);
 }
 
 .site-header__nav--drawer {
