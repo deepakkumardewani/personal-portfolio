@@ -67,8 +67,9 @@ const PortfolioConfigSchema = z.object({
 
 export const portfolio = PortfolioConfigSchema.parse({
   name: "Deepak Kumar Dewani",
-  title: "Senior Frontend Engineer",
-  tagline: "8 years. One company. Four promotions. 14 million users.",
+  title: "AI Lead & Senior Frontend Engineer",
+  tagline:
+    "8+ years | Building performant & scalable applications | Driving AI-assisted development | Performance Expert",
   contactCta: "GET IN TOUCH",
   email: "deepakkumardewani@gmail.com",
   phone: "+91-8308887772",
@@ -120,7 +121,7 @@ export const portfolio = PortfolioConfigSchema.parse({
         "Production AI SaaS with Clerk auth and Razorpay payments. Node.js backend with Redis job queues and Docker CI/CD. Achieved 99.9% uptime.",
       stack: ["Vue 3", "TypeScript", "Node.js", "Redis", "Razorpay", "Docker"],
       url: "https://visual-ai.app",
-      image: "/projects/visual-ai.png",
+      image: "/projects/visualai.png",
       accentColor: "#f59e0b",
       year: 2023,
     },
@@ -176,7 +177,7 @@ export const portfolio = PortfolioConfigSchema.parse({
           ],
         },
         {
-          title: "Frontend Developer",
+          title: "Fullstack Developer",
           period: "Sep 2019 — Nov 2020",
           location: "Mumbai",
           highlights: [
@@ -186,7 +187,7 @@ export const portfolio = PortfolioConfigSchema.parse({
           ],
         },
         {
-          title: "Junior Frontend Developer",
+          title: "Junior Fullstack Developer",
           period: "Aug 2017 — Aug 2019",
           location: "Mumbai",
           highlights: [
